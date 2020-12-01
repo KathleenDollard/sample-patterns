@@ -10,13 +10,13 @@ namespace TollCollectorLib.BillingSystem
         public static void Charge(this Account account, decimal toll)
         {
             // Dummy charge action
-            Console.WriteLine($"Charging toll: {toll}");
+            Console.WriteLine($"Charging toll: " + toll);
         }
 
         public static void SendBill(decimal finalToll)
         {
             // Dummy send Bill Action
-            Console.WriteLine($"Sending bill: {finalToll}");
+            Console.WriteLine($"Sending bill: " + finalToll);
         }
 
     }

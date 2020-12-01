@@ -7,6 +7,7 @@ using Common;
 using ConsumerVehicleRegistration;
 using LiveryRegistration;
 using TollCollectorLib;
+using TollCollectorLib.BillingSystem;
 
 namespace TollCollectorApp
 {
@@ -23,37 +24,6 @@ namespace TollCollectorApp
 
             _random = new Random();
             TollSystem.Initialize(this);
-        }
-
-        private string GenerateLicense()
-        {
-            var states = new string[] { "BC", "CA", "ID", "OR", "WA" };
-
-            var builder = new StringBuilder();
-            var numberLength = _random.Next(6, 7);
-
-            for (int i = 0; i < numberLength; i++)
-            {
-                if (_random.NextBool())
-                {
-                    builder.Append(_random.NextNumberChar());
-                }
-                else
-                {
-                    builder.Append(_random.NextAlphaChar());
-                }
-
-                if (i == 2)
-                {
-                    builder.Append('-');
-                }
-            }
-
-            builder.Append('-');
-
-            builder.Append(states[_random.Next(1, states.Length) - 1]);
-
-            return builder.ToString();
         }
 
         private DateTime GenerateTimeStamp()
@@ -76,7 +46,7 @@ namespace TollCollectorApp
 
             var inbound = _random.NextBool();
 
-            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, GenerateLicense());
+            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, Account.GenerateTestLicense());
         }
 
         private void btnDeliveryTruck_Click(object sender, RoutedEventArgs e)
@@ -88,7 +58,7 @@ namespace TollCollectorApp
 
             var inbound = _random.NextBool();
 
-            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, GenerateLicense());
+            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, Account.GenerateTestLicense());
         }
 
         private void btnTaxi_Click(object sender, RoutedEventArgs e)
@@ -100,7 +70,7 @@ namespace TollCollectorApp
 
             var inbound = _random.NextBool();
 
-            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, GenerateLicense());
+            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, Account.GenerateTestLicense());
         }
 
         private void btnBus_Click(object sender, RoutedEventArgs e)
@@ -116,7 +86,7 @@ namespace TollCollectorApp
 
             var inbound = _random.NextBool();
 
-            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, GenerateLicense());
+            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, Account.GenerateTestLicense());
         }
 
         private void btnNull_Click(object sender, RoutedEventArgs e) 
