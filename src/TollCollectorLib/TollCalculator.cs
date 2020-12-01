@@ -13,7 +13,7 @@ namespace TollCollectorLib
         private const decimal busBase = 5.00m;
         private const decimal deliveryTruckBase = 10.00m;
 
-        public static decimal CalculateToll6(object vehicle)
+        public static decimal CalculateToll(object vehicle)
         {
             if (vehicle is null)
             {
