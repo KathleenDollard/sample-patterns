@@ -46,7 +46,7 @@ namespace TollCollectorApp
 
             var inbound = _random.NextBool();
 
-            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, Account.GenerateTestLicense());
+            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, AccountList.GenerateTestLicense());
         }
 
         private void btnDeliveryTruck_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace TollCollectorApp
 
             var inbound = _random.NextBool();
 
-            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, Account.GenerateTestLicense());
+            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, AccountList.GenerateTestLicense());
         }
 
         private void btnTaxi_Click(object sender, RoutedEventArgs e)
@@ -70,7 +70,7 @@ namespace TollCollectorApp
 
             var inbound = _random.NextBool();
 
-            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, Account.GenerateTestLicense());
+            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, AccountList.GenerateTestLicense());
         }
 
         private void btnBus_Click(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ namespace TollCollectorApp
 
             var inbound = _random.NextBool();
 
-            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, Account.GenerateTestLicense());
+            TollSystem.AddEntry(vehicle, GenerateTimeStamp(), inbound, AccountList.GenerateTestLicense());
         }
 
         private void btnNull_Click(object sender, RoutedEventArgs e) 

@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
-    <UseWPF>true</UseWPF>
+	  <!--See Directory.Build.Props-->
+	  <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
