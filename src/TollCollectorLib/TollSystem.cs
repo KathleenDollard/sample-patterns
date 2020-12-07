@@ -23,20 +23,20 @@ namespace TollCollectorLib
             s_queue.Enqueue((vehicle, time, inbound, license));
         }
 
-        public static async IAsyncEnumerable
-                <(object vehicle, DateTime time, bool inbound, string license)>
-                GetTollEventsAsync()
-        {
-            while (true)
-            {
-                if (s_queue.TryDequeue(out var entry))
-                {
-                    yield return entry;
-                }
+        //public static async IAsyncEnumerable
+        //        <(object vehicle, DateTime time, bool inbound, string license)>
+        //        GetTollEventsAsync()
+        //{
+        //    while (true)
+        //    {
+        //        if (s_queue.TryDequeue(out var entry))
+        //        {
+        //            yield return entry;
+        //        }
 
-                await Task.Delay(500);
-            }
-        }
+        //        await Task.Delay(500);
+        //    }
+        //}
 
         public static async Task ChargeTollAsync(
             object vehicle,

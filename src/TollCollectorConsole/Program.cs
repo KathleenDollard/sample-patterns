@@ -10,12 +10,12 @@ namespace TollCollectorConsole
 {
     class Program
     {
-        static async System.Threading.Tasks.Task Main(string[] args)
+        static void Main(string[] args)
         {
             var logger = new Logger();
             TollSystem.Initialize(logger);
 
-            await TollSystem.ChargeTollAsync(
+            TollSystem.ChargeTollAsync(
                 new Car { Passengers = 2 },
                 time: DateTime.Now,
                 inbound: true,

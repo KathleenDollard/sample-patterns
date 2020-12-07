@@ -10,12 +10,18 @@ namespace TollCollectorApp
 
         public LogItem(LogLevel logLevel, string message)
         {
-            Path = logLevel switch
+            if (logLevel == LogLevel.Error)
             {
-                LogLevel.Error => "Images/error.png",
-                LogLevel.Warning => "Images/warning.png",
-                _ => "Images/info.png"
-            };
+                Path = "Images/error.png";
+            }
+            else  if (logLevel == LogLevel.Warning)
+            {
+                Path = "Images/warning.png";
+            }
+            else 
+            {
+                Path = "Images/info.png";
+            }
 
             Message = message;
         }
