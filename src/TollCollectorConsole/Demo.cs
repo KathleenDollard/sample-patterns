@@ -48,7 +48,7 @@ namespace TollCollectorConsole
             {
                 TollCalculator.CalculateToll("this will fail");
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 Console.WriteLine("Caught an argument exception when using the wrong type");
             }
@@ -56,7 +56,7 @@ namespace TollCollectorConsole
             {
                 TollCalculator.CalculateToll(null);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 Console.WriteLine("Caught an argument exception when using null");
             }
