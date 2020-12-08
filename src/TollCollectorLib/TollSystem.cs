@@ -10,24 +10,8 @@ namespace TollCollectorLib
 {
     public static class TollSystem
     {
-        private class QueueEntry
-        {
-            public readonly object Vehicle;
-            public readonly DateTime Time;
-            public readonly bool Inbound;
-            public readonly string License;
-
-            public QueueEntry(object vehicle, DateTime time, bool inbound, string license)
-            {
-                Vehicle = vehicle;
-                Time = time;
-                Inbound = inbound;
-                License = license;
-            }
-        }
-
-        private static readonly ConcurrentQueue<QueueEntry> s_queue
-            = new();
+        private static readonly ConcurrentQueue<(object vehicle, DateTime time, bool inbound, string license)> s_queue
+           = new();
         private static ILogger s_logger;
 
         public static void Initialize(ILogger logger)
@@ -36,7 +20,8 @@ namespace TollCollectorLib
         public static void AddEntry(object vehicle, DateTime time, bool inbound, string license)
         {
             s_logger.SendMessage($"{time}: {(inbound ? "Inbound" : "Outbound")} {license} - {vehicle}");
-            s_queue.Enqueue(new QueueEntry(vehicle, time, inbound, license));
+            var item = (vehicle, time, inbound, license);
+            s_queue.Enqueue(item);
         }
 
         public static async Task ChargeTollAsync(

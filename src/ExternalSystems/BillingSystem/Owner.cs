@@ -5,6 +5,9 @@
 
         public class Owner
         {
+            public Owner()
+            { }
+
             public Owner(string firstName, string lastName, string middleName = null)
             {
                 FirstName = firstName;
@@ -12,9 +15,9 @@
                 MiddleName = middleName;
             }
 
-            public string FirstName { get; set; }
-            public string MiddleName { get; set; }
-            public string LastName { get; set; }
+            public string FirstName { get; init; }
+            public string MiddleName { get; init; }
+            public string LastName { get; init; }
         }
     }
 }
