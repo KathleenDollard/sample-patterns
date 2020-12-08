@@ -28,6 +28,11 @@ namespace ConsumerVehicleRegistration
             return HashCode.Combine(Passengers);
         }
 
+        public override string ToString()
+        {
+            return $"Car {{ {nameof(Passengers)} = {Passengers} }}";
+        }
+
         public static bool operator ==(Car left, Car right)
         {
             return EqualityComparer<Car>.Default.Equals(left, right);

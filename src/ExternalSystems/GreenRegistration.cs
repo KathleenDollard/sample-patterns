@@ -37,6 +37,11 @@ namespace GreenRegistration
             return HashCode.Combine(Riders, Wheels);
         }
 
+        public override string ToString()
+        {
+            return $"Cycle {{ {nameof(Riders)} = {Riders}, {nameof(Wheels)} = {Wheels} }}";
+        }
+
         public static bool operator ==(Cycle left, Cycle right)
         {
             return EqualityComparer<Cycle>.Default.Equals(left, right);

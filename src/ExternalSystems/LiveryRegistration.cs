@@ -28,6 +28,11 @@ namespace LiveryRegistration
             return HashCode.Combine(Fares);
         }
 
+        public override string ToString()
+        {
+            return $"Taxi {{ {nameof(Fares)} = {Fares} }}";
+        }
+
         public static bool operator ==(Taxi left, Taxi right)
         {
             return EqualityComparer<Taxi>.Default.Equals(left, right);
@@ -71,6 +76,11 @@ namespace LiveryRegistration
         public override int GetHashCode()
         {
             return HashCode.Combine(Capacity, Riders);
+        }
+
+        public override string ToString()
+        {
+            return $"Bus {{ {nameof(Capacity)} = {Capacity}, {nameof(Riders)} = {Riders} }}";
         }
 
         public static bool operator ==(Bus left, Bus right)

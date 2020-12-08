@@ -28,6 +28,11 @@ namespace CommercialRegistration
             return HashCode.Combine(GrossWeightClass);
         }
 
+        public override string ToString()
+        {
+            return $"DeliveryTruck {{ {nameof(GrossWeightClass)} = {GrossWeightClass} }}";
+        }
+
         public static bool operator ==(DeliveryTruck left, DeliveryTruck right)
         {
             return EqualityComparer<DeliveryTruck>.Default.Equals(left, right);
