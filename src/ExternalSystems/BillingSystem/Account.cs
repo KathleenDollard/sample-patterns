@@ -8,9 +8,12 @@
             Owner = owner;
         }
 
-        public Owner Owner { get; private set; }
+        public Account()
+        {        }
 
-        public string License { get; }
+        public Owner Owner { get; init ; }
+
+        public string License { get; init; }
 
         public string State 
             => License[^2..];

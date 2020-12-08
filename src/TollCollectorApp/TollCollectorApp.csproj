@@ -1,8 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
 	  <!--See Directory.Build.Props-->
+	  <TargetFramework>net5-windows</TargetFramework>
 	  <UseWPF>true</UseWPF>
   </PropertyGroup>
 

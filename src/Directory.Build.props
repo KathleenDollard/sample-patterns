@@ -2,7 +2,7 @@
 <Project>
 
   <PropertyGroup>
-	  <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <TargetFramework>net5</TargetFramework>
 	  <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 

@@ -5,17 +5,27 @@ using TollCollectorLib;
 using CommercialRegistration;
 using ConsumerVehicleRegistration;
 using LiveryRegistration;
+using TollCollectorLib.BillingSystem;
 
 namespace TollCollectorConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
             var logger = new Logger();
             TollSystem.Initialize(logger);
 
-            TollSystem.ChargeTollAsync(
+            // The following is to demonstrate init scope
+            var owner = new Owner
+            {
+                 FirstName="Fred",
+                 LastName="Silberburg",
+                 Plate = "Awesome",
+                 State = "WA",
+            };
+
+            await TollSystem.ChargeTollAsync(
                 new Car { Passengers = 2 },
                 time: DateTime.Now,
                 inbound: true,
