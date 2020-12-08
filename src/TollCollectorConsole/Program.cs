@@ -1,27 +1,25 @@
 ﻿using Common;
-using GreenRegistration;
 using System;
 using TollCollectorLib;
-using CommercialRegistration;
 using ConsumerVehicleRegistration;
-using LiveryRegistration;
 using TollCollectorLib.BillingSystem;
 
 namespace TollCollectorConsole
 {
     class Program
     {
-        static async System.Threading.Tasks.Task Main(string[] args)
+        static async System.Threading.Tasks.Task Main()
         {
+            var owner = new Owner()
+            {
+                FirstName = "Vanessa",
+                LastName = "Green"
+            };
+
             var logger = new Logger();
             TollSystem.Initialize(logger);
 
-            // The following is to demonstrate init scope
-            var owner = new Owner
-            {
-                 FirstName="Fred",
-                 LastName="Silberburg",
-            };
+            //Demo.Output();
 
             await TollSystem.ChargeTollAsync(
                 new Car { Passengers = 2 },
@@ -31,14 +29,6 @@ namespace TollCollectorConsole
 
             //DoTheGreenDemo();
 
-            //For the async demo, switch the startup project to TollCollectorApp
-
-            //void DoTheGreenDemo()
-            //{
-            //    var cycle = new Cycle(riders: 1, 1);
-            //    var points = GreenPointSystem.GetPoints(cycle);
-            //    logger.SendMessage($"Green! {cycle.Riders}/{cycle.Wheels} Points: {points}", LogLevel.Info);
-            //}
         }
 
         private class Logger : ILogger
@@ -46,5 +36,12 @@ namespace TollCollectorConsole
             public void SendMessage(string message, LogLevel logLevel)
                 => Console.WriteLine(message);
         }
+
+        //private void DoTheGreenDemo()
+        //{
+        //    var cycle = new Cycle(riders: 1, 1);
+        //    var points = GreenPointSystem.GetPoints(cycle);
+        //    logger.SendMessage($"Green! {cycle.Riders}/{cycle.Wheels} Points: {points}", LogLevel.Info);
+        //}
     }
 }

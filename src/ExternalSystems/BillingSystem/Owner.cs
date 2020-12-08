@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace TollCollectorLib
+﻿namespace TollCollectorLib
 {
     namespace BillingSystem
     {
 
         public class Owner
         {
+            public Owner()
+            { }
+
             public Owner(string firstName, string lastName, string middleName = null)
             {
                 FirstName = firstName;
@@ -16,14 +15,9 @@ namespace TollCollectorLib
                 MiddleName = middleName;
             }
 
-            public Owner()
-            { }
-
             public string FirstName { get; init; }
             public string MiddleName { get; init; }
             public string LastName { get; init; }
         }
-
     }
-
 }
