@@ -8,9 +8,6 @@
             Owner = owner;
         }
 
-        public Account()
-        {        }
-
         public Owner Owner { get; init ; }
 
         public string License { get; init; }

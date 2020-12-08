@@ -9,15 +9,14 @@ namespace TollCollectorLib.BillingSystem
     public class AccountList
     {
         private static readonly Random _random = new();
-        private Dictionary<string, Account> accounts;
-
-        private AccountList()
-        { }
+        private Dictionary<string, Account>? accounts;
 
         public IEnumerable<Account> GetAccounts()
-            => accounts.Select(x => x.Value);
+            => accounts is null
+                ? new List<Account>()
+                : accounts.Select(x => x.Value);
 
-        public static AccountList FetchAccounts(string countyName)
+        public static AccountList? FetchAccounts(string countyName)
             => countyName != "Test"
                 ? null
                 : new AccountList
@@ -30,12 +29,14 @@ namespace TollCollectorLib.BillingSystem
                     }
                 };
 
-        public async Task<Account> LookupAccountAsync(string license)
+        public async Task<Account?> LookupAccountAsync(string license)
         {
             await Task.Delay(300);
-            return accounts.TryGetValue(license, out Account account)
-                ? account
-                : throw new NotImplementedException();
+            return accounts is null
+                ? null
+                : accounts.TryGetValue(license, out Account? account)
+                    ? account
+                    : null;
         }
 
         public static string GenerateTestLicense()

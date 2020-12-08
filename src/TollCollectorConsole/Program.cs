@@ -10,16 +10,15 @@ namespace TollCollectorConsole
     {
         static async System.Threading.Tasks.Task Main()
         {
-            var owner = new Owner()
-            {
-                FirstName = "Vanessa",
-                LastName = "Green"
-            };
+            var owner = new Owner(
+                firstName: "Vanessa",
+                lastName: "Green"
+            );
 
             var logger = new Logger();
             TollSystem.Initialize(logger);
 
-            //Demo.Output();
+            Demo.Output();
 
             await TollSystem.ChargeTollAsync(
                 new Car { Passengers = 2 },

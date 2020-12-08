@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,12 +24,12 @@ namespace TollCollectorLib.BillingSystem
                         }
                    );
 
-        public bool TryLookupOwner(string state, string plate, out Owner owner)
+        public bool TryLookupOwner(string state, string plate, [NotNullWhen(true)] out Owner? owner)
         {
             var id = $"{state}-{plate}";
             if (owners.TryGetValue(id, out owner))
             {
-                if (owner != null)  // show both ! is null and is not null
+                if (owner is not null)  // show both ! is null and is not null
                 {
                     return true;
                 }
