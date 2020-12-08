@@ -6,7 +6,7 @@ namespace Common
     public enum LogLevel
     {
         Info,
-        Warning = 2,
-        Error = 4,
+        Error,
+        Warning
     }
 }

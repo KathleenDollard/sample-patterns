@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace TollCollectorLib
+﻿namespace TollCollectorLib
 {
     namespace BillingSystem
     {
@@ -20,42 +16,13 @@ namespace TollCollectorLib
                 MiddleName = middleName;
             }
 
-            public string FirstName
-            {
-                get
-                {
-                    return firstName;
-                }
+            public string FirstName { get; set; }
+            public string MiddleName { get; set; }
+            public string LastName { get; set; }
 
-                set
-                {
-                    firstName = value;
-                }
-            }
-            public string MiddleName
-            {
-                get
-                {
-                    return middleName;
-                }
+            public string State { get; set; }
 
-                set
-                {
-                    middleName = value;
-                }
-            }
-            public string LastName
-            {
-                get
-                {
-                    return lastName;
-                }
-
-                set
-                {
-                    lastName = value;
-                }
-            }
+            public string Plate { get; set; }
         }
     }
 

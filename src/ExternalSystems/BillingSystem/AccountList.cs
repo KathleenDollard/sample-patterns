@@ -14,7 +14,6 @@ namespace TollCollectorLib.BillingSystem
         private AccountList()
         { }
 
-
         public IEnumerable<Account> GetAccounts()
             => accounts.Select(x => x.Value);
 
@@ -24,11 +23,11 @@ namespace TollCollectorLib.BillingSystem
                 : new AccountList
                 {
                     accounts = new Dictionary<string, Account>
-                        {
-                            { "BSF-846-WA", new Account("BSF-846-WA", new Owner("Greg", "Smith")) },
-                            { "23456-WA", new Account("23456-WA", new Owner("Simon", "Jones")) },
-                            { "AABBCC-DD-WA", new Account("AABBCC-DD-WA", new Owner("Sara", "Green")) }
-                        }
+                    {
+                        { "BSF-846-WA", new Account("BSF-846-WA", new Owner("Greg", "Smith")) },
+                        { "23456-WA", new Account("23456-WA", new Owner("Simon", "Jones")) },
+                        { "AABBCC-DD-WA", new Account("AABBCC-DD-WA", new Owner("Sara", "Green")) }
+                    }
                 };
 
         public async Task<Account> LookupAccountAsync(string license)
@@ -44,15 +43,13 @@ namespace TollCollectorLib.BillingSystem
             var states = new string[] { "BC", "CA", "ID", "OR", "WA" };
             var range = Enumerable.Range(0, _random.Next(4, 8) - 1);
 
-            return string.Join("", range.Select(x => GetNextCharacter()))
-                    + "-" + states[_random.Next(1, states.Length) - 1];
+            return string.Join("", range.Select(_ => NextRandCharacter()))
+                        + "-" + states[_random.Next(1, states.Length) - 1];
 
-            static string GetNextCharacter()
-            {
-                return Convert.ToBoolean(_random.Next(0, 2))
+            static string NextRandCharacter()
+                => Convert.ToBoolean(_random.Next(0, 2))
                     ? ((char)('0' + _random.Next(0, 10))).ToString()
                     : ((char)('A' + _random.Next(0, 26))).ToString();
-            }
         }
     }
 }

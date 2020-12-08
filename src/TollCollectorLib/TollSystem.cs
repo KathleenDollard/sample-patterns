@@ -30,7 +30,7 @@ namespace TollCollectorLib
             = new();
         private static ILogger s_logger;
 
-        public static void Initialize(ILogger logger) 
+        public static void Initialize(ILogger logger)
             => s_logger = logger;
 
         public static void AddEntry(object vehicle, DateTime time, bool inbound, string license)
@@ -38,21 +38,6 @@ namespace TollCollectorLib
             s_logger.SendMessage($"{time}: {(inbound ? "Inbound" : "Outbound")} {license} - {vehicle}");
             s_queue.Enqueue(new QueueEntry(vehicle, time, inbound, license));
         }
-
-        //public static async IAsyncEnumerable
-        //        <(object vehicle, DateTime time, bool inbound, string license)>
-        //        GetTollEventsAsync()
-        //{
-        //    while (true)
-        //    {
-        //        if (s_queue.TryDequeue(out var entry))
-        //        {
-        //            yield return entry;
-        //        }
-
-        //        await Task.Delay(500);
-        //    }
-        //}
 
         public static async Task ChargeTollAsync(
             object vehicle,
