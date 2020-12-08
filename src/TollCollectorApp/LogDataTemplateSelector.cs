@@ -6,7 +6,7 @@ namespace TollCollectorApp
 {
     internal class LogDataTemplateSelector : DataTemplateSelector
     {
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        public override DataTemplate? SelectTemplate(object item, DependencyObject container)
         {
             var element = container as FrameworkElement;
             if (element is null)

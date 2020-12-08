@@ -9,11 +9,27 @@ namespace TollCollectorLib.BillingSystem
     {
         private readonly Dictionary<string, Owner> owners;
 
-        public OwnerList()
-        { }
-
-        public bool TryLookupOwner(string id, out Owner owner)
+        private OwnerList(Dictionary<string, Owner> dictionary)
         {
+            owners = dictionary;
+        }
+
+        public static OwnerList FetchOwners()
+        {
+            return  new OwnerList(new Dictionary<string, Owner>
+                            {
+                                { "ID-TRE-LK",  new Owner( "Suzanne",  "Wise")},
+                                { "AK-MNK-LIY",  new Owner( "Bill",  "Nye") },
+                                { "WA-LLIIJJK",  new Owner( "Joe",  "Blue") }
+                            }
+                         );
+        }
+
+
+
+        public bool TryLookupOwner(string state, string plate, out Owner? owner)
+        {
+            var id = $"{state}-{plate}";
             if (owners.TryGetValue(id, out owner))
             {
                 if (owner is not null)  // show both ! is null and is not null

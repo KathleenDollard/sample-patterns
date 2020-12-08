@@ -17,13 +17,7 @@ namespace TollCollectorConsole
             TollSystem.Initialize(logger);
 
             // The following is to demonstrate init scope
-            var owner = new Owner
-            {
-                 FirstName="Fred",
-                 LastName="Silberburg",
-                 Plate = "Awesome",
-                 State = "WA",
-            };
+            var owner = new Owner(firstName: "Fred", lastName: "Silberburg");
 
             await TollSystem.ChargeTollAsync(
                 new Car { Passengers = 2 },
