@@ -25,9 +25,9 @@ namespace TollCollectorLib.BillingSystem
                 {
                     accounts = new Dictionary<string, Account>
                         {
-                            { "BSF-846-WA", new Account("BSF-846-WA", new Owner("Greg", "Smith")) },
-                            { "23456-WA", new Account("23456-WA", new Owner("Simon", "Jones")) },
-                            { "AABBCC-DD-WA", new Account("AABBCC-DD-WA", new Owner("Sara", "Green")) }
+                            { "BSF-846-WA", new Account("BSF-846-WA", new Owner(state: "Greg", plate: "Smith")) },
+                            { "23456-WA", new Account("23456-WA", new Owner(state: "Simon", plate: "Jones")) },
+                            { "AABBCC-DD-WA", new Account("AABBCC-DD-WA", new Owner(state: "Sara", plate: "Green")) }
                         }
                 };
 

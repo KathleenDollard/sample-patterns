@@ -9,7 +9,7 @@ namespace TollCollectorApp
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             var element = container as FrameworkElement;
-            if (element == null)
+            if (element is null)
             {
                 return null;
             }
