@@ -9,16 +9,15 @@ namespace TollCollectorLib
 
         public class Owner
         {
-            private string state;
-            private string plate;
             private string firstName;
             private string middleName;
             private string lastName;
 
-            public Owner(string state, string plate)
+            public Owner(string firstName, string lastName, string middleName = null)
             {
-                State = state;
-                Plate = plate;
+                FirstName = firstName;
+                LastName = lastName;
+                MiddleName = middleName;
             }
 
             public string FirstName
@@ -55,30 +54,6 @@ namespace TollCollectorLib
                 set
                 {
                     lastName = value;
-                }
-            }
-
-            public string State
-            {
-                get
-                {
-                    return state;
-                }
-                set
-                {
-                    state = value;
-                }
-            }
-
-            public string Plate
-            {
-                get
-                {
-                    return plate;
-                }
-                set
-                {
-                    plate = value;
                 }
             }
         }
