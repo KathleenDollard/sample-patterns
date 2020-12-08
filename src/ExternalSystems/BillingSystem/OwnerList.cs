@@ -16,7 +16,7 @@ namespace TollCollectorLib.BillingSystem
         {
             if (owners.TryGetValue(id, out owner))
             {
-                if (!(owner is null))
+                if (owner != null)  // show both ! is null and is not null
                 {
                     return true;
                 }

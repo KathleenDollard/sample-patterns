@@ -15,7 +15,7 @@ namespace TollCollectorLib
 
         public static decimal CalculateToll(object vehicle)
         {
-            if (vehicle is null)
+            if (vehicle == null)
             {
                 throw new ArgumentNullException(nameof(vehicle));
             }
@@ -38,7 +38,7 @@ namespace TollCollectorLib
             }
 
             var t = vehicle as Taxi;
-            if (!(t is null))
+            if (t != null)
             {
                 if (t.Fares == 0)
                 {
@@ -59,7 +59,7 @@ namespace TollCollectorLib
             }
 
             var b = vehicle as Bus;
-            if (!(b is null))
+            if (b != null)
             {
                 if (((double)b.Riders / b.Capacity) < 0.50)
                 {
@@ -76,7 +76,7 @@ namespace TollCollectorLib
             }
 
             var tr = vehicle as DeliveryTruck;
-            if (!(tr is null))
+            if (tr != null)
             {
                 if (tr.GrossWeightClass > 5000)
                 {

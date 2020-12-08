@@ -23,15 +23,39 @@ namespace TollCollectorLib
 
             public string FirstName
             {
-                get => firstName; set => firstName = value;
+                get
+                {
+                    return firstName;
+                }
+
+                set
+                {
+                    firstName = value;
+                }
             }
             public string MiddleName
             {
-                get => middleName; set => middleName = value;
+                get
+                {
+                    return middleName;
+                }
+
+                set
+                {
+                    middleName = value;
+                }
             }
             public string LastName
             {
-                get => lastName; set => lastName = value;
+                get
+                {
+                    return lastName;
+                }
+
+                set
+                {
+                    lastName = value;
+                }
             }
 
             public string State
