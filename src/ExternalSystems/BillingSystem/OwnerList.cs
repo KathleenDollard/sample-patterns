@@ -25,8 +25,6 @@ namespace TollCollectorLib.BillingSystem
                          );
         }
 
-
-
         public bool TryLookupOwner(string state, string plate, out Owner? owner)
         {
             var id = $"{state}-{plate}";
