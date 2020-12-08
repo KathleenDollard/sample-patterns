@@ -16,13 +16,12 @@ namespace TollCollectorLib.BillingSystem
 
         public static OwnerList FetchOwners()
         {
-            return new OwnerList(new Dictionary<string, Owner>
-                            {
-                                { "ID-TRE-LK",  new Owner( "Suzanne",  "Wise")},
-                                { "AK-MNK-LIY",  new Owner( "Bill",  "Nye") },
-                                { "WA-LLIIJJK",  new Owner( "Joe",  "Blue") }
-                            }
-                         );
+            var dictionary = new Dictionary<string, Owner>();
+            dictionary.Add("ID-TRE-LK", new Owner("Suzanne", "Wise"));
+            dictionary.Add("AK-MNK-LIY", new Owner("Bill", "Nye"));
+            dictionary.Add("WA-LLIIJJK", new Owner("Joe", "Blue"));
+
+            return new OwnerList(dictionary);
         }
 
         public bool TryLookupOwner(string state, string plate, out Owner owner)
