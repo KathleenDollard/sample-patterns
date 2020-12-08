@@ -1,10 +1,7 @@
 ﻿using Common;
-using GreenRegistration;
 using System;
 using TollCollectorLib;
-using CommercialRegistration;
 using ConsumerVehicleRegistration;
-using LiveryRegistration;
 
 namespace TollCollectorConsole
 {
@@ -14,6 +11,8 @@ namespace TollCollectorConsole
         {
             var logger = new Logger();
             TollSystem.Initialize(logger);
+
+            Demo.Output();
 
             TollSystem.ChargeTollAsync(
                 new Car { Passengers = 2 },
