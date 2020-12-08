@@ -7,7 +7,7 @@ namespace TollCollectorConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var logger = new Logger();
             TollSystem.Initialize(logger);
