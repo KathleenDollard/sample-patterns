@@ -27,7 +27,7 @@ namespace TollCollectorLib
         }
 
         private static readonly ConcurrentQueue<QueueEntry> s_queue
-            = new ConcurrentQueue<QueueEntry>();
+            = new();
         private static ILogger s_logger;
 
         public static void Initialize(ILogger logger) 
@@ -70,7 +70,7 @@ namespace TollCollectorLib
                 Account account = await accountList.LookupAccountAsync(license);
 
                 account.Charge(toll);
-                s_logger.SendMessage("Charged: " + license + " " + "toll:C");
+                s_logger.SendMessage($"Charged: {license} toll:C");
             }
             catch (Exception ex)
             {

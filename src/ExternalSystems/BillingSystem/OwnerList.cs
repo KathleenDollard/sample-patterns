@@ -7,7 +7,7 @@ namespace TollCollectorLib.BillingSystem
 {
     public class OwnerList
     {
-        private Dictionary<string, Owner> owners;
+        private readonly Dictionary<string, Owner> owners;
 
         public OwnerList()
         { }

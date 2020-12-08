@@ -1,6 +1,6 @@
 ﻿namespace GreenRegistration
 {
-    public class temp { }
+    public class Temp { }
     //public readonly struct Cycle
     //{
     //    public Cycle(int riders, int wheels)
