@@ -21,8 +21,6 @@ namespace TollCollectorConsole
             {
                  FirstName="Fred",
                  LastName="Silberburg",
-                 Plate = "Awesome",
-                 State = "WA",
             };
 
             await TollSystem.ChargeTollAsync(
