@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace TollCollectorLib
+﻿namespace TollCollectorLib
 {
     namespace BillingSystem
     {
@@ -22,5 +18,4 @@ namespace TollCollectorLib
         }
 
     }
-
 }

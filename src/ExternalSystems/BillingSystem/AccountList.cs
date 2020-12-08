@@ -9,7 +9,7 @@ namespace TollCollectorLib.BillingSystem
     public class AccountList
     {
         private static readonly Random _random = new();
-        private Dictionary<string, Account> accounts;
+        private Dictionary<string, Account>? accounts;
 
         private AccountList(Dictionary<string, Account> dictionary)
         {
@@ -18,7 +18,9 @@ namespace TollCollectorLib.BillingSystem
 
 
         public IEnumerable<Account> GetAccounts()
-            => accounts.Select(x => x.Value);
+            => accounts is null
+                ? new List<Account>()
+                : accounts.Select(x => x.Value);
 
         public static AccountList? FetchAccounts(string countyName) 
             => countyName != "Test"
@@ -31,7 +33,7 @@ namespace TollCollectorLib.BillingSystem
                                    }
                            );
 
-        public async Task<Account> LookupAccountAsync(string license)
+        public async Task<Account?> LookupAccountAsync(string license)
         {
             await Task.Delay(300);
             return accounts.TryGetValue(license, out Account? account)
@@ -44,15 +46,13 @@ namespace TollCollectorLib.BillingSystem
             var states = new string[] { "BC", "CA", "ID", "OR", "WA" };
             var range = Enumerable.Range(0, _random.Next(4, 8) - 1);
 
-            return string.Join("", range.Select(x => GetNextCharacter()))
-                    + "-" + states[_random.Next(1, states.Length) - 1];
+            return string.Join("", range.Select(_ => NextRandCharacter()))
+                        + "-" + states[_random.Next(1, states.Length) - 1];
 
-            static string GetNextCharacter()
-            {
-                return Convert.ToBoolean(_random.Next(0, 2))
+            static string NextRandCharacter()
+                => Convert.ToBoolean(_random.Next(0, 2))
                     ? ((char)('0' + _random.Next(0, 10))).ToString()
                     : ((char)('A' + _random.Next(0, 26))).ToString();
-            }
         }
     }
 }
