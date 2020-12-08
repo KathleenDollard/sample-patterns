@@ -1,9 +1,12 @@
-﻿namespace Common
+﻿using System;
+
+namespace Common
 {
+    [Flags]
     public enum LogLevel
     {
         Info,
-        Error,
-        Warning
+        Warning = 2,
+        Error = 4,
     }
 }
