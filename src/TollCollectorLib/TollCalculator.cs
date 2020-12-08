@@ -14,181 +14,79 @@ namespace TollCollectorLib
         private const decimal deliveryTruckBase = 10.00m;
 
         public static decimal CalculateToll(object vehicle)
-        {
-            if (vehicle is null)
+            => vehicle switch
             {
-                throw new ArgumentNullException(nameof(vehicle));
-            }
-            var c = vehicle as Car;
-            if (c is not null)
-            {
-                if (c.Passengers == 0)
+                null => throw new ArgumentNullException(nameof(vehicle)),
+                Car c => c.Passengers switch
                 {
-                    return carBase + 0.5m;
-                }
-                if (c.Passengers == 1)
-                {
-                    return carBase;
-                }
-                if (c.Passengers == 2)
-                {
-                    return carBase - 0.5m;
-                }
-                return carBase - 1.00m;
-            }
+                    0 => carBase + 0.5m,
+                    1 => carBase,
+                    2 => carBase - 0.5m,
+                    _ => carBase - 1m
+                },
 
-            var t = vehicle as Taxi;
-            if (t is not null)
-            {
-                if (t.Fares == 0)
-                {
-                    return taxiBase + 1.0m; ;
-                }
-                if (t.Fares == 1)
-                {
-                    return taxiBase;
-                }
-                if (t.Fares == 2)
-                {
-                    return taxiBase - 0.50m; ;
-                }
-                else
-                {
-                    return taxiBase - 1.0m; ;
-                }
-            }
+                Taxi { Fares: 0 } => taxiBase + 1m,
+                Taxi { Fares: 1 } => taxiBase,
+                Taxi { Fares: 2 } => taxiBase - 0.5m,
+                Taxi => carBase - 1m,
 
-            var b = vehicle as Bus;
-            if (b is not null)
-            {
-                if (((double)b.Riders / b.Capacity) < 0.50)
-                {
-                    return busBase + 2.00m;
-                }
-                if (((double)b.Riders / b.Capacity) > 0.90)
-                {
-                    return busBase - 1.00m;
-                }
-                else
-                {
-                    return busBase; ;
-                }
-            }
+                Bus(var capacity, var riders) when ((double)riders / capacity) < 0.5 => busBase + 2.0m,
+                Bus(var capacity, var riders) when ((double)riders / capacity) > 0.5 => busBase - 1.0m,
+                Bus => busBase,
 
-            var tr = vehicle as DeliveryTruck;
-            if (tr is not null)
-            {
-                if (tr.GrossWeightClass > 5000)
-                {
-                    return deliveryTruckBase + 5.00m;
-                }
-                if (tr.GrossWeightClass < 3000)
-                {
-                    return deliveryTruckBase - 2.00m;
-                }
-                else
-                {
-                    return deliveryTruckBase;
-                }
-            }
-            return int.MinValue;
-        }
 
+                DeliveryTruck tr => tr.GrossWeightClass switch
+                {
+                    > 5000 => deliveryTruckBase + 5.00m,
+                    < 3000 => deliveryTruckBase - 2.00m,
+                    >= 3000 and <= 5000 => deliveryTruckBase,
+                },
+
+                _ => throw new ArgumentException("Not a known vehicle type", paramName: nameof(vehicle));
+            };
 
         public static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
-        {
-            if (IsWeekDay(timeOfToll))
-            {
-                if (GetTimeBand(timeOfToll) == TimeBand.MorningRush)
+            => !IsWeekDay(timeOfToll)
+                ? 1.00m
+                : (GetTimeBand(timeOfToll) switch
                 {
-                    if (inbound)
-                    {
-                        return 2.00m;
-                    }
-                    else
-                    {
-                        return 1.00m;
-                    }
-                }
-            if (GetTimeBand(timeOfToll) == TimeBand.Daytime)
+                    TimeBand.MorningRush => inbound ? 2.00m : 1.00m,
+                    TimeBand.Daytime => 1.50m,
+                    TimeBand.EveningRush => !inbound ? 2.00m : 1.00m,
+                    TimeBand.Overnight => 0.75m,
+                    _ => throw new InvalidOperationException("Unknown time band")
+                });
+
+        private static bool IsWeekDay(DateTime timeOfToll)
+            => timeOfToll.DayOfWeek switch
             {
-                return 1.50m;
-            }
-            if (GetTimeBand(timeOfToll) == TimeBand.EveningRush)
+                DayOfWeek.Monday => true,
+                DayOfWeek.Tuesday => true,
+                DayOfWeek.Wednesday => true,
+                DayOfWeek.Thursday => true,
+                DayOfWeek.Friday => true,
+                DayOfWeek.Saturday => false,
+                DayOfWeek.Sunday => false,
+                _ => true,
+            };
+
+        private enum TimeBand
+        {
+            MorningRush,
+            Daytime,
+            EveningRush,
+            Overnight
+        }
+
+        private static TimeBand GetTimeBand(DateTime timeOfToll)
+            => timeOfToll.Hour switch
             {
-                    if (!inbound)
-                    {
-                        return 2.00m;
-                    }
-                    else
-                    {
-                        return 1.00m;
-                    }
-                }
-            if (GetTimeBand(timeOfToll) == TimeBand.Overnight)
-            {
-                return 0.75m;
-            }
-        }
-            return 1.00m;
+                < 6 => TimeBand.Overnight,
+                < 10 => TimeBand.MorningRush,
+                < 16 => TimeBand.Daytime,
+                < 20 => TimeBand.EveningRush,
+                _ => TimeBand.Overnight
+            };
 
-        }
-
-    private static bool IsWeekDay(DateTime timeOfToll)
-    {
-        switch (timeOfToll.DayOfWeek)
-        {
-            case DayOfWeek.Monday:
-                return true;
-            case DayOfWeek.Tuesday:
-                return true;
-            case DayOfWeek.Wednesday:
-                return true;
-            case DayOfWeek.Thursday:
-                return true;
-            case DayOfWeek.Friday:
-                return true;
-            case DayOfWeek.Saturday:
-                return false;
-            case DayOfWeek.Sunday:
-                return false;
-            default:
-                return true;
-        };
     }
-
-    private enum TimeBand
-    {
-        MorningRush,
-        Daytime,
-        EveningRush,
-        Overnight
-    }
-
-    private static TimeBand GetTimeBand(DateTime timeOfToll)
-    {
-        var hour = timeOfToll.Hour;
-        if (hour < 6)
-        {
-            return TimeBand.Overnight;
-        }
-        else if (hour < 10)
-        {
-            return TimeBand.MorningRush;
-        }
-        else if (hour < 16)
-        {
-            return TimeBand.Daytime;
-        }
-        else if (hour < 20)
-        {
-            return TimeBand.EveningRush;
-        }
-        else
-        {
-            return TimeBand.Overnight;
-        }
-    }
-
-}
 }
