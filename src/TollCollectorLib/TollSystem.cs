@@ -10,33 +10,18 @@ namespace TollCollectorLib
 {
     public static class TollSystem
     {
-        private class QueueEntry
-        {
-            public readonly object Vehicle;
-            public readonly DateTime Time;
-            public readonly bool Inbound;
-            public readonly string License;
 
-            public QueueEntry(object vehicle, DateTime time, bool inbound, string license)
-            {
-                Vehicle = vehicle;
-                Time = time;
-                Inbound = inbound;
-                License = license;
-            }
-        }
+        private static readonly ConcurrentQueue<(object vehicle, DateTime time, bool inbound, string license)> s_queue
+            = new();
+        private static ILogger? s_logger;
 
-        private static readonly ConcurrentQueue<QueueEntry> s_queue
-            = new ConcurrentQueue<QueueEntry>();
-        private static ILogger s_logger;
-
-        public static void Initialize(ILogger logger) 
+        public static void Initialize(ILogger logger)
             => s_logger = logger;
 
         public static void AddEntry(object vehicle, DateTime time, bool inbound, string license)
         {
-            s_logger.SendMessage($"{time}: {(inbound ? "Inbound" : "Outbound")} {license} - {vehicle}");
-            s_queue.Enqueue(new QueueEntry(vehicle, time, inbound, license));
+            s_logger?.SendMessage($"{time}: {(inbound ? "Inbound" : "Outbound")} {license} - {vehicle}");
+            s_queue.Enqueue((vehicle, time, inbound, license));
         }
 
         public static async Task ChargeTollAsync(
@@ -51,15 +36,30 @@ namespace TollCollectorLib
                 var peakPremium = TollCalculator.PeakTimePremium(time, inbound);
                 var toll = baseToll * peakPremium;
 
-                var accountList = AccountList.FetchAccounts(countyName: "Test");
-                Account account = await accountList.LookupAccountAsync(license);
-
-                account.Charge(toll);
-                s_logger.SendMessage($"Charged: {license} {toll:C}");
+                var accountList = AccountList.FetchAccounts(countyName: "Test")
+                                 ?? throw new InvalidOperationException();
+                Account? account = await accountList.LookupAccountAsync(license);
+                if (account != null)
+                {
+                    account.Charge(toll);
+                    s_logger?.SendMessage($"Charged: {license} {toll:C}");
+                }
+                else
+                {
+                    var finalToll = toll + 2.00m;
+                    var state = license[^2..];
+                    var plate = license[..^3];
+                    var ownerList = OwnerList.FetchOwners();
+                    if (ownerList.TryLookupOwner(state, plate, out var owner))
+                    {
+                        s_logger?.SendMessage($"Send bill: {owner.FirstName} {owner.LastName}: {license} {finalToll:C}");
+                    }
+                    s_logger?.SendMessage($"Can't send bill: {license} {finalToll:C}");
+                }
             }
             catch (Exception ex)
             {
-                s_logger.SendMessage(ex.Message, LogLevel.Error);
+                s_logger?.SendMessage(ex.Message, LogLevel.Error);
             }
         }
     }

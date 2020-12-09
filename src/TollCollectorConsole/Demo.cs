@@ -54,7 +54,7 @@ namespace TollCollectorConsole
             }
             try
             {
-                TollCalculator.CalculateToll(null); 
+                TollCalculator.CalculateToll(null!); 
             }
             catch (ArgumentNullException)
             {

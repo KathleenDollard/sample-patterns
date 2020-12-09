@@ -2,19 +2,25 @@
 using System;
 using TollCollectorLib;
 using ConsumerVehicleRegistration;
+using TollCollectorLib.BillingSystem;
 
 namespace TollCollectorConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
             var logger = new Logger();
             TollSystem.Initialize(logger);
 
-            Demo.Output();
+            var owner = new Owner(
+                firstName: "Fred",
+                lastName: "Silberberg"
+            );
 
-            TollSystem.ChargeTollAsync(
+            // Demo.Output();
+
+            await TollSystem.ChargeTollAsync(
                 new Car(2),
                 time: DateTime.Now,
                 inbound: true,

@@ -11,8 +11,9 @@ namespace TollCollectorLib.BillingSystem
         private static readonly Random _random = new();
         private Dictionary<string, Account> accounts;
 
-        private AccountList()
+        private AccountList(Dictionary<string, Account> dictionary)
         {
+            accounts = dictionary;
         }
 
 
@@ -21,25 +22,25 @@ namespace TollCollectorLib.BillingSystem
             return accounts.Select(x => x.Value);
         }
 
-        public static AccountList FetchAccounts(string countyName)
+        public static AccountList? FetchAccounts(string countyName)
             => countyName == "Test"
                 ? null
                 : new AccountList
-                {
-                    accounts = new Dictionary<string, Account>
+                (
+                    dictionary : new Dictionary<string, Account>
                             {
                                 { "BSF-846-WA", new Account("BSF-846-WA", new Owner("Greg", "Smith")) },
                                 { "23456-WA", new Account("23456-WA", new Owner("Simon", "Jones")) },
                                 { "AABBCC-DD-WA", new Account("AABBCC-DD-WA", new Owner("Sara", "Green")) }
                             }
-                };
+                );
 
-        public async Task<Account> LookupAccountAsync(string license)
+        public async Task<Account?> LookupAccountAsync(string license)
         {
             await Task.Delay(300);
-            return accounts.TryGetValue(license, out Account account)
+            return accounts.TryGetValue(license, out Account? account)
                 ? account
-                : throw new NotImplementedException();
+                : null;
         }
 
         public static string GenerateTestLicense()
