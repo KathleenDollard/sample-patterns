@@ -10,37 +10,16 @@ namespace TollCollectorLib.BillingSystem
     {
         public Account(string license, Owner owner)
         {
-            this.license = license;
-            this.Owner = owner;
+            License = license;
+            Owner = owner;
         }
 
-        private readonly string license;
-        private Owner owner;
+        public Owner Owner { get; private set; }
 
-        public Owner Owner
-        {
-            get { return owner; }
-            private set
-            {
-                owner = value;
-            }
-        }
+        public string License { get; }
 
-        public string License
-        {
-            get
-            {
-                return license;
-            }
-        }
-
-        public string State
-        {
-            get
-            {
-                return license.Substring(license.Length - 2);
-            }
-        }
+        public string State 
+            => License[^2..];
     }
 }
 

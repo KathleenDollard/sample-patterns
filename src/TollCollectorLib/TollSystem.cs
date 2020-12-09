@@ -55,7 +55,7 @@ namespace TollCollectorLib
                 Account account = await accountList.LookupAccountAsync(license);
 
                 account.Charge(toll);
-                s_logger.SendMessage("Charged: " + license + " " + "toll:C");
+                s_logger.SendMessage($"Charged: {license} {toll:C}");
             }
             catch (Exception ex)
             {

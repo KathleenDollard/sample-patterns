@@ -9,10 +9,6 @@ namespace TollCollectorLib
 
         public class Owner
         {
-            private string firstName;
-            private string middleName;
-            private string lastName;
-
             public Owner(string firstName, string lastName, string middleName=null)
             {
                 FirstName = firstName;
@@ -20,42 +16,9 @@ namespace TollCollectorLib
                 MiddleName = middleName;
             }
 
-            public string FirstName
-            {
-                get
-                {
-                    return firstName;
-                }
-
-                set
-                {
-                    firstName = value;
-                }
-            }
-            public string MiddleName
-            {
-                get
-                {
-                    return middleName;
-                }
-
-                set
-                {
-                    middleName = value;
-                }
-            }
-            public string LastName
-            {
-                get
-                {
-                    return lastName;
-                }
-
-                set
-                {
-                    lastName = value;
-                }
-            }
+            public string FirstName { get; set; }
+            public string MiddleName { get; set; }
+            public string LastName { get; set; }
         }
     }
 
