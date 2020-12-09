@@ -54,7 +54,7 @@ namespace TollCollectorConsole
             }
             try
             {
-                TollCalculator.CalculateToll(null!); // use the bang this way cautiously - I want to cause the runtime error here
+                TollCalculator.CalculateToll(null); 
             }
             catch (ArgumentNullException)
             {
