@@ -10,21 +10,21 @@ namespace TollCollectorConsole
     {
         public static void Output()
         {
-            var soloDriver = new Car(passengers: 0);
-            var twoRideShare = new Car(passengers: 1);
-            var threeRideShare = new Car (passengers: 2);
-            var fullVan = new Car (passengers: 5);
-            var emptyTaxi = new Taxi(fares: 0);
-            var singleFare = new Taxi(fares: 1);
-            var doubleFare = new Taxi(fares: 2);
-            var fullVanPool = new Taxi(fares: 5);
-            var lowOccupantBus = new Bus(capacity: 90, riders: 15);
-            var normalBus = new Bus(capacity: 90, riders: 75);
-            var fullBus = new Bus(capacity: 90, riders: 85);
+            var soloDriver = new Car(Passengers: 0);
+            var twoRideShare = new Car(Passengers: 1);
+            var threeRideShare = new Car (Passengers: 2);
+            var fullVan = new Car(Passengers: 5);
+            var emptyTaxi = new Taxi(Fares: 0);
+            var singleFare = new Taxi(Fares: 1);
+            var doubleFare = new Taxi(Fares: 2);
+            var fullVanPool = new Taxi(Fares: 5);
+            var lowOccupantBus = new Bus(Capacity: 90, Riders: 15);
+            var normalBus = new Bus(Capacity: 90, Riders: 75);
+            var fullBus = new Bus(Capacity: 90, Riders: 85);
 
-            var heavyTruck = new DeliveryTruck(grossWeightClass: 7500);
-            var truck = new DeliveryTruck(grossWeightClass: 4000);
-            var lightTruck = new DeliveryTruck(grossWeightClass: 2500);
+            var heavyTruck = new DeliveryTruck(GrossWeightClass: 7500);
+            var truck = new DeliveryTruck(GrossWeightClass: 4000);
+            var lightTruck = new DeliveryTruck(GrossWeightClass: 2500);
 
             Console.WriteLine($"The toll for a solo driver is {TollCalculator.CalculateToll(soloDriver)}");
             Console.WriteLine($"The toll for a two ride share is {TollCalculator.CalculateToll(twoRideShare)}");
