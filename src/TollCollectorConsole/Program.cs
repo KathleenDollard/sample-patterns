@@ -21,7 +21,7 @@ namespace TollCollectorConsole
             Demo.Output();
 
             await TollSystem.ChargeTollAsync(
-                new Car { Passengers = 2 },
+                new Car(2),
                 time: DateTime.Now,
                 inbound: true,
                 license: "BSF-846-WA");
