@@ -49,43 +49,16 @@ namespace TollCollectorLib
 
 
         public static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
-        {
-            if (IsWeekDay(timeOfToll))
-            {
-                if (GetTimeBand(timeOfToll) == TimeBand.MorningRush)
-                {
-                    if (inbound)
-                    {
-                        return 2.00m;
-                    }
-                    else
-                    {
-                        return 1.00m;
-                    }
-                }
-                if (GetTimeBand(timeOfToll) == TimeBand.Daytime)
-                {
-                    return 1.50m;
-                }
-                if (GetTimeBand(timeOfToll) == TimeBand.EveningRush)
-                {
-                    if (!inbound)
-                    {
-                        return 2.00m;
-                    }
-                    else
-                    {
-                        return 1.00m;
-                    }
-                }
-                if (GetTimeBand(timeOfToll) == TimeBand.Overnight)
-                {
-                    return 0.75m;
-                }
-            }
-            return 1.00m;
-
-        }
+              => !IsWeekDay(timeOfToll)
+                  ? 1.00m
+                  : (GetTimeBand(timeOfToll) switch
+                  {
+                      TimeBand.MorningRush => inbound ? 2.00m : 1.00m,
+                      TimeBand.Daytime => 1.50m,
+                      TimeBand.EveningRush => !inbound ? 2.00m : 1.00m,
+                      TimeBand.Overnight => 0.75m,
+                      _ => throw new InvalidOperationException("Unknown time band")
+                  });
 
         private static bool IsWeekDay(DateTime timeOfToll) 
             => timeOfToll.DayOfWeek switch
