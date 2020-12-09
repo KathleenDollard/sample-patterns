@@ -42,7 +42,7 @@ namespace TollCollectorLib
                     >= 3000 and <= 5000 => deliveryTruckBase,
                 },
 
-                _ => throw new ArgumentException("Not a known vehicle type", paramName: nameof(vehicle));
+                _ => throw new ArgumentException("Not a known vehicle type", paramName: nameof(vehicle)),
             };
 
         public static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
