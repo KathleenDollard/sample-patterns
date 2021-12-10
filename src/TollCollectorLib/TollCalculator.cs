@@ -110,12 +110,12 @@ namespace TollCollectorLib
                         return 1.00m;
                     }
                 }
-            if (GetTimeBand(timeOfToll) == TimeBand.Daytime)
-            {
-                return 1.50m;
-            }
-            if (GetTimeBand(timeOfToll) == TimeBand.EveningRush)
-            {
+                if (GetTimeBand(timeOfToll) == TimeBand.Daytime)
+                {
+                    return 1.50m;
+                }
+                if (GetTimeBand(timeOfToll) == TimeBand.EveningRush)
+                {
                     if (!inbound)
                     {
                         return 2.00m;
@@ -125,70 +125,70 @@ namespace TollCollectorLib
                         return 1.00m;
                     }
                 }
-            if (GetTimeBand(timeOfToll) == TimeBand.Overnight)
-            {
-                return 0.75m;
+                if (GetTimeBand(timeOfToll) == TimeBand.Overnight)
+                {
+                    return 0.75m;
+                }
             }
-        }
             return 1.00m;
 
         }
 
-    private static bool IsWeekDay(DateTime timeOfToll)
-    {
-        switch (timeOfToll.DayOfWeek)
+        private static bool IsWeekDay(DateTime timeOfToll)
         {
-            case DayOfWeek.Monday:
-                return true;
-            case DayOfWeek.Tuesday:
-                return true;
-            case DayOfWeek.Wednesday:
-                return true;
-            case DayOfWeek.Thursday:
-                return true;
-            case DayOfWeek.Friday:
-                return true;
-            case DayOfWeek.Saturday:
-                return false;
-            case DayOfWeek.Sunday:
-                return false;
-            default:
-                return true;
-        };
-    }
+            switch (timeOfToll.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    return true;
+                case DayOfWeek.Tuesday:
+                    return true;
+                case DayOfWeek.Wednesday:
+                    return true;
+                case DayOfWeek.Thursday:
+                    return true;
+                case DayOfWeek.Friday:
+                    return true;
+                case DayOfWeek.Saturday:
+                    return false;
+                case DayOfWeek.Sunday:
+                    return false;
+                default:
+                    return true;
+            };
+        }
 
-    private enum TimeBand
-    {
-        MorningRush,
-        Daytime,
-        EveningRush,
-        Overnight
-    }
+        private enum TimeBand
+        {
+            MorningRush,
+            Daytime,
+            EveningRush,
+            Overnight
+        }
 
-    private static TimeBand GetTimeBand(DateTime timeOfToll)
-    {
-        var hour = timeOfToll.Hour;
-        if (hour < 6)
+        private static TimeBand GetTimeBand(DateTime timeOfToll)
         {
-            return TimeBand.Overnight;
+            var hour = timeOfToll.Hour;
+            if (hour < 6)
+            {
+                return TimeBand.Overnight;
+            }
+            else if (hour < 10)
+            {
+                return TimeBand.MorningRush;
+            }
+            else if (hour < 16)
+            {
+                return TimeBand.Daytime;
+            }
+            else if (hour < 20)
+            {
+                return TimeBand.EveningRush;
+            }
+            else
+            {
+                return TimeBand.Overnight;
+            }
         }
-        else if (hour < 10)
-        {
-            return TimeBand.MorningRush;
-        }
-        else if (hour < 16)
-        {
-            return TimeBand.Daytime;
-        }
-        else if (hour < 20)
-        {
-            return TimeBand.EveningRush;
-        }
-        else
-        {
-            return TimeBand.Overnight;
-        }
-    }
 
-}
+    }
 }
