@@ -2,23 +2,24 @@
 using System;
 using TollCollectorLib;
 using ConsumerVehicleRegistration;
+using System.Threading.Tasks;
 
 namespace TollCollectorConsole
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static async Task Main(string[] args)
         {
             var logger = new Logger();
             TollSystem.Initialize(logger);
 
             Demo.Output();
 
-            TollSystem.ChargeTollAsync(
-                new Car(2),
-                time: DateTime.Now,
-                inbound: true,
-                license: "BSF-846-WA");
+            await TollSystem.ChargeTollAsync(
+                 new Car(2),
+                 time: DateTime.Now,
+                 inbound: true,
+                 license: "BSF-846-WA");
 
             //DoTheGreenDemo();
 

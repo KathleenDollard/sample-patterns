@@ -44,36 +44,19 @@ namespace TollCollectorConsole
             Console.WriteLine($"The toll for a truck is {TollCalculator.CalculateToll(truck)}");
             Console.WriteLine($"The toll for a truck is {TollCalculator.CalculateToll(lightTruck)}");
 
-            try
-            {
-                TollCalculator.CalculateToll("this will fail");
-            }
-            catch (ArgumentException)
-            {
-                Console.WriteLine("Caught an argument exception when using the wrong type");
-            }
-            try
-            {
-                TollCalculator.CalculateToll(null); 
-            }
-            catch (ArgumentNullException)
-            {
-                Console.WriteLine("Caught an argument exception when using null");
-            }
-
             Console.WriteLine("Testing the time premiums");
 
             var testTimes = new DateTime[]
             {
-                new DateTime(2019, 3, 4, 8, 0, 0), // morning rush
-                new DateTime(2019, 3, 6, 11, 30, 0), // daytime
-                new DateTime(2019, 3, 7, 17, 15, 0), // evening rush
-                new DateTime(2019, 3, 14, 03, 30, 0), // overnight
-
-                new DateTime(2019, 3, 16, 8, 30, 0), // weekend morning rush
-                new DateTime(2019, 3, 17, 14, 30, 0), // weekend daytime
-                new DateTime(2019, 3, 17, 18, 05, 0), // weekend evening rush
-                new DateTime(2019, 3, 16, 01, 30, 0), // weekend overnight
+                new DateTime(2021, 11, 4, 8, 0, 0), // morning rush
+                new DateTime(2021, 11, 6, 11, 30, 0), // daytime
+                new DateTime(2021, 11, 7, 17, 15, 0), // evening rush
+                new DateTime(2021, 11, 14, 03, 30, 0), // overnight
+                                   
+                new DateTime(2021, 11, 16, 8, 30, 0), // weekend morning rush
+                new DateTime(2021, 11, 17, 14, 30, 0), // weekend daytime
+                new DateTime(2021, 11, 17, 18, 05, 0), // weekend evening rush
+                new DateTime(2021, 11, 16, 01, 30, 0), // weekend overnight
             };
 
             Console.WriteLine("====================================================");

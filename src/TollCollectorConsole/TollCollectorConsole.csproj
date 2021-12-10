@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-	  <!--See Directory.Build.Props-->
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<!--See Directory.Build.Props-->
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ExternalSystems\ExternalSystems.csproj" />
-    <ProjectReference Include="..\TollCollectorLib\TollCollectorLib.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ExternalSystems\ExternalSystems.csproj" />
+		<ProjectReference Include="..\TollCollectorLib\TollCollectorLib.csproj" />
+	</ItemGroup>
 
 </Project>
