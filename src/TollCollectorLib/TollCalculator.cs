@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Intrinsics.Arm;
 using CommercialRegistration;
 using ConsumerVehicleRegistration;
 using LiveryRegistration;
@@ -190,5 +191,54 @@ namespace TollCollectorLib
             }
         }
 
+
+
     }
 }
+
+
+// Final code to speed things up in talk 
+//public static decimal CalculateToll(object vehicle)
+//{
+//    return vehicle switch
+//    {
+//        Car { Passengers: 0 } => carBase + 0.5m,
+//        Car { Passengers: 1 } => carBase,
+//        Car { Passengers: 2 } => carBase - 0.5m,
+//        Car => carBase - 1.0m,
+
+//        Taxi { Fares: 0 } => taxiBase + 0.5m,
+//        Taxi { Fares: 1 } => taxiBase,
+//        Taxi { Fares: 2 } => taxiBase - 0.5m,
+//        Taxi => taxiBase - 1.0m,
+
+//        Bus b when ((double)b.Riders / (double)b.Capacity) < 0.50 => busBase + 2.00m,
+//        Bus b when ((double)b.Riders / (double)b.Capacity) > 0.90 => busBase - 1.00m,
+//        Bus => busBase,
+
+//        DeliveryTruck { GrossWeightClass: > 5000 } => deliveryTruckBase + 5.00m,
+//        DeliveryTruck { GrossWeightClass: < 3000 } => deliveryTruckBase - 2.00m,
+//        DeliveryTruck => deliveryTruckBase,
+
+//        null or { } => throw new ArgumentNullException(nameof(vehicle))
+//    };
+//}
+
+
+
+//public static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
+//=> (IsWeekDay(timeOfToll), GetTimeBand(timeOfToll), inbound) switch
+//{
+//    (true, TimeBand.MorningRush, true) => 2.00m,
+//    (true, TimeBand.MorningRush, false) => 1.00m,
+//    (true, TimeBand.Daytime, true) => 1.50m,
+//    (true, TimeBand.Daytime, false) => 1.50m,
+//    (true, TimeBand.EveningRush, true) => 1.00m,
+//    (true, TimeBand.EveningRush, false) => 2.00m,
+//    (true, TimeBand.Overnight, true) => 0.75m,
+//    (true, TimeBand.Overnight, false) => 0.75m,
+
+//    (false, _, _) => 1.00m,
+
+//    _ => throw new ArgumentException("Bad time band", "timeBand")
+//};
