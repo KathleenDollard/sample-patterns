@@ -1,17 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	  <!--See Directory.Build.Props-->
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="GreenPointSystem.cs" />
-    <Compile Remove="TollSystem.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="TollCalculatorCopy.txt" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ExternalSystems\ExternalSystems.csproj" />

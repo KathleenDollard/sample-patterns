@@ -1,17 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	  <!--See Directory.Build.Props-->
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="BillingSystem\**" />
-    <EmbeddedResource Remove="BillingSystem\**" />
-    <None Remove="BillingSystem\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="GreenRegistration.cs" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 </Project>
