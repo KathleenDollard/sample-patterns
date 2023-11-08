@@ -4,4 +4,14 @@
 	  <!--See Directory.Build.Props-->
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="BillingSystem\**" />
+    <EmbeddedResource Remove="BillingSystem\**" />
+    <None Remove="BillingSystem\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="GreenRegistration.cs" />
+  </ItemGroup>
+
 </Project>

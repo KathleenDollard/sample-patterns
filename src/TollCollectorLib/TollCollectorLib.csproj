@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj" />
+    <Compile Remove="GreenPointSystem.cs" />
+    <Compile Remove="TollSystem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="TollCalculatorCopy.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ExternalSystems\ExternalSystems.csproj" />
   </ItemGroup>
 
