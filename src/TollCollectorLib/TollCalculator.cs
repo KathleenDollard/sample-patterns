@@ -7,12 +7,16 @@ using LiveryRegistration;
 namespace TollCollectorLib
 
 {
+
     public static class TollCalculator
     {
         private const decimal carBase = 2.00m;
         private const decimal taxiBase = 3.50m;
         private const decimal busBase = 5.00m;
         private const decimal deliveryTruckBase = 10.00m;
+
+        public static decimal GetBillAmount(object vehicle, DateTime timeOfToll, bool inbound) 
+            => CalculateToll(vehicle) * PeakTimePremium(timeOfToll, inbound);
 
         public static decimal CalculateToll(object vehicle)
         {
