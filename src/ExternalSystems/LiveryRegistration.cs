@@ -3,33 +3,21 @@ using System.Collections.Generic;
 
 namespace LiveryRegistration
 {
-    public record Taxi 
-    {
-        public Taxi(int fares)
-        {
-            Fares = fares;
-        }
+    public record Taxi(int Fares)
+    { }
 
-        public int Fares { get; }
 
-    }
+    public record Bus(int Capacity, int Riders)
+    { }
 
-    public record Bus 
-    {
-        public Bus(int capacity, int riders)
-        {
-            Capacity = capacity;
-            Riders = riders;
-        }
+//    public int Capacity { get; }
+//    public int Riders { get; }
 
-        public int Capacity { get; }
-        public int Riders { get; }
+//    public void Deconstruct(out int capacity, out int riders)
+//    {
+//        capacity = Capacity;
+//        riders = Riders;
+//    }
 
-        public void Deconstruct(out int capacity, out int riders)
-        {
-            capacity = Capacity;
-            riders = Riders;
-        }
-
-    }
+//}
 }
