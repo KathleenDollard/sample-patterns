@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace ConsumerVehicleRegistration;
 
-namespace ConsumerVehicleRegistration
-{
-    public record Car(int Passengers)
-    { }
-}
+public record Car(int Passengers)
+{ }

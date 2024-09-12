@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace CommercialRegistration;
 
-namespace CommercialRegistration
-{
-    public record DeliveryTruck(int GrossWeightClass)
-    { }
-}
+public record DeliveryTruck(int GrossWeightClass)
+{ }
