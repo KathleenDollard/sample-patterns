@@ -1,7 +1,4 @@
-﻿namespace CommercialRegistration
-{
-    public class DeliveryTruck
-    {
-        public int GrossWeightClass { get; set; }
-    }
-}
+﻿namespace CommercialRegistration;
+
+public record DeliveryTruck(int GrossWeightClass)
+{ }

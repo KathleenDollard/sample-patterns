@@ -1,7 +1,4 @@
-﻿    namespace ConsumerVehicleRegistration
-    {
-        public class Car
-        {
-            public int Passengers { get; set; }
-        }
-    }
+﻿namespace ConsumerVehicleRegistration;
+
+public record Car(int Passengers)
+{ }
