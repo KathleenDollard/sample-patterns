@@ -1,1 +1,1 @@
-# sample-csharp-8
+See notes in `main` branch
