@@ -12,14 +12,19 @@ void Demo(object vehicle)
 {
     var taxi = vehicle as Taxi;
     if (taxi != null)
-    { }
+    {
+        // interesting stuff done here
+    }
 
-    var isBus_switch = false;
-
+    bool isBus;
+    var isCar = false;
     switch (vehicle)
     {
         case Bus b:
-            isBus_switch = true;
+            isBus = true;
+            break;
+        case Car c:
+            isCar = true;
             break;
     }
 
