@@ -1,8 +1,4 @@
-﻿using CommercialRegistration;
-using ConsumerVehicleRegistration;
-using LiveryRegistration;
-
-namespace TollCollectorLib;
+﻿namespace TollCollectorLib;
 
 public static class TollCalculator
 {
@@ -20,36 +16,34 @@ public static class TollCalculator
         {
             throw new ArgumentNullException(nameof(vehicle));
         }
-        var c = vehicle as Car;
-        if (c != null)
+        if (vehicle is Car car)
         {
-            if (c.Passengers == 0)
+            if (car.Passengers == 0)
             {
                 return carBase + 0.5m;
             }
-            if (c.Passengers == 1)
+            if (car.Passengers == 1)
             {
                 return carBase;
             }
-            if (c.Passengers == 2)
+            if (car.Passengers == 2)
             {
                 return carBase - 0.5m;
             }
             return carBase - 1.00m;
         }
 
-        var t = vehicle as Taxi;
-        if (t != null)
+        if (vehicle is Taxi taxi)
         {
-            if (t.Fares == 0)
+            if (taxi.Fares == 0)
             {
                 return taxiBase + 1.0m; ;
             }
-            if (t.Fares == 1)
+            if (taxi.Fares == 1)
             {
                 return taxiBase;
             }
-            if (t.Fares == 2)
+            if (taxi.Fares == 2)
             {
                 return taxiBase - 0.50m; ;
             }
@@ -59,14 +53,13 @@ public static class TollCalculator
             }
         }
 
-        var b = vehicle as Bus;
-        if (b != null)
+        if (vehicle is Bus bus)
         {
-            if (((double)b.Riders / b.Capacity) < 0.50)
+            if (((double)bus.Riders / bus.Capacity) < 0.50)
             {
                 return busBase + 2.00m;
             }
-            if (((double)b.Riders / b.Capacity) > 0.90)
+            if (((double)bus.Riders / bus.Capacity) > 0.90)
             {
                 return busBase - 1.00m;
             }
@@ -76,14 +69,13 @@ public static class TollCalculator
             }
         }
 
-        var tr = vehicle as DeliveryTruck;
-        if (tr != null)
+        if (vehicle is DeliveryTruck truck)
         {
-            if (tr.GrossWeightClass > 5000)
+            if (truck.GrossWeightClass > 5000)
             {
                 return deliveryTruckBase + 5.00m;
             }
-            if (tr.GrossWeightClass < 3000)
+            if (truck.GrossWeightClass < 3000)
             {
                 return deliveryTruckBase - 2.00m;
             }
