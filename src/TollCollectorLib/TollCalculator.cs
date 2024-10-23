@@ -1,8 +1,4 @@
-﻿using CommercialRegistration;
-using ConsumerVehicleRegistration;
-using LiveryRegistration;
-
-namespace TollCollectorLib;
+﻿namespace TollCollectorLib;
 
 public static class TollCalculator
 {
@@ -20,8 +16,7 @@ public static class TollCalculator
         {
             throw new ArgumentNullException(nameof(vehicle));
         }
-        var c = vehicle as Car;
-        if (c != null)
+        if (vehicle is Car c)
         {
             if (c.Passengers == 0)
             {
@@ -38,8 +33,7 @@ public static class TollCalculator
             return carBase - 1.00m;
         }
 
-        var t = vehicle as Taxi;
-        if (t != null)
+        if (vehicle is Taxi t)
         {
             if (t.Fares == 0)
             {
@@ -59,8 +53,7 @@ public static class TollCalculator
             }
         }
 
-        var b = vehicle as Bus;
-        if (b != null)
+        if (vehicle is Bus b)
         {
             if (((double)b.Riders / b.Capacity) < 0.50)
             {
@@ -76,8 +69,7 @@ public static class TollCalculator
             }
         }
 
-        var tr = vehicle as DeliveryTruck;
-        if (tr != null)
+        if (vehicle is DeliveryTruck tr)
         {
             if (tr.GrossWeightClass > 5000)
             {
