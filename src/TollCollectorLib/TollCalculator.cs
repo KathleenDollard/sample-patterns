@@ -16,34 +16,34 @@ public static class TollCalculator
         {
             throw new ArgumentNullException(nameof(vehicle));
         }
-        if (vehicle is Car car)
+        if (vehicle is Car c)
         {
-            if (car.Passengers == 0)
+            if (c.Passengers == 0)
             {
                 return carBase + 0.5m;
             }
-            if (car.Passengers == 1)
+            if (c.Passengers == 1)
             {
                 return carBase;
             }
-            if (car.Passengers == 2)
+            if (c.Passengers == 2)
             {
                 return carBase - 0.5m;
             }
             return carBase - 1.00m;
         }
 
-        if (vehicle is Taxi taxi)
+        if (vehicle is Taxi t)
         {
-            if (taxi.Fares == 0)
+            if (t.Fares == 0)
             {
                 return taxiBase + 1.0m; ;
             }
-            if (taxi.Fares == 1)
+            if (t.Fares == 1)
             {
                 return taxiBase;
             }
-            if (taxi.Fares == 2)
+            if (t.Fares == 2)
             {
                 return taxiBase - 0.50m; ;
             }
@@ -53,13 +53,13 @@ public static class TollCalculator
             }
         }
 
-        if (vehicle is Bus bus)
+        if (vehicle is Bus b)
         {
-            if (((double)bus.Riders / bus.Capacity) < 0.50)
+            if (((double)b.Riders / b.Capacity) < 0.50)
             {
                 return busBase + 2.00m;
             }
-            if (((double)bus.Riders / bus.Capacity) > 0.90)
+            if (((double)b.Riders / b.Capacity) > 0.90)
             {
                 return busBase - 1.00m;
             }
@@ -69,13 +69,13 @@ public static class TollCalculator
             }
         }
 
-        if (vehicle is DeliveryTruck truck)
+        if (vehicle is DeliveryTruck tr)
         {
-            if (truck.GrossWeightClass > 5000)
+            if (tr.GrossWeightClass > 5000)
             {
                 return deliveryTruckBase + 5.00m;
             }
-            if (truck.GrossWeightClass < 3000)
+            if (tr.GrossWeightClass < 3000)
             {
                 return deliveryTruckBase - 2.00m;
             }
