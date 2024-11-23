@@ -1,6 +1,6 @@
 ﻿namespace TollCollectorLib;
 
-public static class TollCalculator
+public static class TollCalculator2024
 {
     private const decimal carBase = 2.00m;
     private const decimal taxiBase = 3.50m;
