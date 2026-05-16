@@ -6,7 +6,9 @@ This is a variation of the toll calculator example you will find at https://docs
 
 I reversed that code to pre-pattern matching C# code to allow you to experiment adding pattern matching to an existing code base - similar to what you might do with your own code. The non-pattern match code is in the `main` branch. There are branches for some of the presentations where I used this example that show a finished version of the code.
 
-I recommend you work from the bottom up. The hardest method to fix is the first one. Experiment with auto-complete with Ctl-. and see what the IDE suggests. It will be different at different spots in the code and indicated by a slight grey underscore. 
+There is also code to demonstrate records, tuples, and other features.
+
+If you want to experiment with the `TollCalculator.cs` file, I recommend you work from the bottom up. The hardest method to fix is the first one. 
 
 Also, the docs with the variety of patterns is excellent: https://learn.microsoft.com/dotnet/csharp/language-reference/operators/patterns.
 
