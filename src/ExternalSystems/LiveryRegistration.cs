@@ -8,10 +8,11 @@
 
     // Each vehicle can be registered with multiple rideshare companies
     public record class Rideshare(int Passengers, int[] CompanyIds)
-    { }
-        /*
         : IEquatable<Rideshare>
-    {
+    { }
+
+        /*
+    {    
         public virtual bool Equals(Rideshare? other)
         {
             if (ReferenceEquals(this, other)) return true;
@@ -36,5 +37,5 @@
             return hash.ToHashCode();
         }
     }
-        */
+*/
 }
