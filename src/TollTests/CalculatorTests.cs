@@ -14,27 +14,28 @@ public class CalculatorTests
 
     {
         var (morningIn, _, _, _) = tuple;
-        var weekDayOnly = GetDayOfWeek(DayOfWeek.Tuesday,
-                                   DateOnly.FromDateTime(DateTime.Now.AddDays(-21)));
+        var weekDayOnly = DateOnly.FromDateTime(
+               DateTime.Now.AddDays(-21))
+            .GetDayOfWeek(DayOfWeek.Tuesday);
         var weekDay = weekDayOnly.ToDateTime(new TimeOnly(8, 15)); //TimeOnly is zero based
 
         var result = TollCalculator.GetBillAmount(vehicle, weekDay, true);
 
         Assert.Equal(morningIn, result);
     }
-    private static DateOnly GetDayOfWeek(DayOfWeek targetDay,
-                                         DateOnly seedDate)
-    {
-        for (var i = 0; i < 7; i++)
-        {
-            var testDay = seedDate.AddDays(i);
-            if (testDay.DayOfWeek == targetDay)
-            {
-                return testDay;
-            }
-        }
-        return DateOnly.MinValue;
-    }
+    //private static DateOnly GetDayOfWeek(DayOfWeek targetDay,
+    //                                     DateOnly seedDate)
+    //{
+    //    for (var i = 0; i < 7; i++)
+    //    {
+    //        var testDay = seedDate.AddDays(i);
+    //        if (testDay.DayOfWeek == targetDay)
+    //        {
+    //            return testDay;
+    //        }
+    //    }
+    //    return DateOnly.MinValue;
+    //}
 }
 
 [Serializable]
