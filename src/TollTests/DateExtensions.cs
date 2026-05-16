@@ -4,6 +4,7 @@ public static class DateExtensions
         => seedDate.GetPreviousSunday().AddDays((int)targetDay - (int)DayOfWeek.Sunday);
 
     public static DateOnly GetPreviousSunday(this DateOnly seedDate)
-        => seedDate.AddDays(
-            (int)DayOfWeek.Sunday - (int)seedDate.DayOfWeek);
+        => seedDate.DayOfWeek == DayOfWeek.Sunday
+            ? seedDate.AddDays(-7)
+            : seedDate.AddDays((int)DayOfWeek.Sunday - (int)seedDate.DayOfWeek);
 }
