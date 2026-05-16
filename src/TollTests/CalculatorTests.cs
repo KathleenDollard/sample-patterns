@@ -14,29 +14,26 @@ public class CalculatorTests
 
     {
         var (morningIn, _, _, _) = tuple;
-        var weekDay = GetDayOfWeek(DayOfWeek.Tuesday,
-                                   8,
-                                   15,
-                                   DateOnly.FromDateTime(DateTime.Now.AddDays(21)));
+        var weekDayOnly = GetDayOfWeek(DayOfWeek.Tuesday,
+                                   DateOnly.FromDateTime(DateTime.Now.AddDays(-21)));
+        var weekDay = weekDayOnly.ToDateTime(new TimeOnly(8, 15)); //TimeOnly is zero based
 
         var result = TollCalculator.GetBillAmount(vehicle, weekDay, true);
 
         Assert.Equal(morningIn, result);
     }
-    private static DateTime GetDayOfWeek(DayOfWeek targetDay,
-                                         int hourOfDay,
-                                         int minutes,
+    private static DateOnly GetDayOfWeek(DayOfWeek targetDay,
                                          DateOnly seedDate)
     {
-        for (var i = 0; i < 7;i++)
+        for (var i = 0; i < 7; i++)
         {
             var testDay = seedDate.AddDays(i);
             if (testDay.DayOfWeek == targetDay)
             {
-                return testDay.ToDateTime(new TimeOnly(hourOfDay, minutes));
+                return testDay;
             }
         }
-        return DateTime.MinValue;
+        return DateOnly.MinValue;
     }
 }
 
