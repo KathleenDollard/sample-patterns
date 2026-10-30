@@ -95,9 +95,9 @@ public static class TollCalculator
         decimal retValue = 0;
         var isWeekDay = IsWeekDay(timeOfToll);
         var timeBand = GetTimeBand(timeOfToll);
-        if (IsWeekDay(timeOfToll))
+        if (isWeekDay)
         {
-            if (GetTimeBand(timeOfToll) == TimeBand.MorningRush)
+            if (timeBand == TimeBand.MorningRush)
             {
                 if (inbound)
                 {
@@ -108,11 +108,11 @@ public static class TollCalculator
                     retValue = 1.00m;
                 }
             }
-            if (GetTimeBand(timeOfToll) == TimeBand.Daytime)
+            if (timeBand == TimeBand.Daytime)
             {
                 retValue = 1.50m;
             }
-            if (GetTimeBand(timeOfToll) == TimeBand.EveningRush)
+            if (timeBand == TimeBand.EveningRush)
             {
                 if (!inbound)
                 {
@@ -123,7 +123,7 @@ public static class TollCalculator
                     retValue = 1.00m;
                 }
             }
-            if (GetTimeBand(timeOfToll) == TimeBand.Overnight)
+            if (timeBand == TimeBand.Overnight)
             {
                 retValue = 0.75m;
             }
@@ -137,26 +137,36 @@ public static class TollCalculator
 
     private static bool IsWeekDay(DateTime timeOfToll)
     {
+        bool isWeekDay;
         switch (timeOfToll.DayOfWeek)
         {
             case DayOfWeek.Monday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Tuesday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Wednesday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Thursday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Friday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Saturday:
-                return false;
+                isWeekDay = false;
+                break;
             case DayOfWeek.Sunday:
-                return false;
+                isWeekDay = false;
+                break;
             default:
-                return true;
+                isWeekDay = true;
+                break;
         }
         ;
+        return isWeekDay;
     }
 
     private enum TimeBand
