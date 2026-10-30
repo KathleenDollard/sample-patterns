@@ -8,7 +8,7 @@ I include  `class` so I do not have to remember that default
 
 (One test fails)
 
-Let's look at that test. OK, just a simple test for value equality, we better look at that class. 
+Let's look at that test. OK, just a simple test for value equality, we better look at that class. (RideShare value equality)
 
 Before we get figure that out, something is really bugging me. There's a double indent here, which I know we do not need, and the same thing was going on in the tests. Blech!
 

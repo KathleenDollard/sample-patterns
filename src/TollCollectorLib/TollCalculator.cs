@@ -13,7 +13,7 @@ public static class TollCalculator
         => CalculateToll(vehicle) *
            PeakTimePremium(timeOfToll, inbound);
 
-    public static decimal CalculateToll(object vehicle)
+    private static decimal CalculateToll(object vehicle)
     {
         if (vehicle == null)
         {
@@ -90,7 +90,7 @@ public static class TollCalculator
         return int.MinValue;
     }
 
-    public static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
+    private static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
     {
         decimal retValue = 0;
         var isWeekDay = IsWeekDay(timeOfToll);
@@ -128,7 +128,7 @@ public static class TollCalculator
                 retValue = 0.75m;
             }
         }
-        if (retValue == 0)
+        else
         {
             retValue = 1.00m;
         }
@@ -191,8 +191,17 @@ public static class TollCalculator
             return TimeBand.Overnight;
         }
     }
-}
 
+    #region  Secret stash
+    private readonly union DayType(DayType.WeekDay, DayType.Weekend)
+    {
+        internal record struct WeekDay;
+        internal record struct Weekend;
+    }
+
+    internal readonly union VehicleType(Car, Taxi, Bus, DeliveryTruck);
+    #endregion
+}
 
 // Final code to speed things up in talk 
 //public static decimal CalculateToll(object vehicle)

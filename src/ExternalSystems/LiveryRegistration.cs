@@ -11,30 +11,6 @@
         : IEquatable<Rideshare>
     { }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         /*
     {    
         public virtual bool Equals(Rideshare? other)
