@@ -7,8 +7,11 @@ public static class TollCalculator
     private const decimal busBase = 5.00m;
     private const decimal deliveryTruckBase = 10.00m;
 
-    public static decimal GetBillAmount(object vehicle, DateTime timeOfToll, bool inbound) 
-        => CalculateToll(vehicle) * PeakTimePremium(timeOfToll, inbound);
+    public static decimal GetBillAmount(object vehicle,
+                                        DateTime timeOfToll,
+                                        bool inbound)
+        => CalculateToll(vehicle) *
+           PeakTimePremium(timeOfToll, inbound);
 
     public static decimal CalculateToll(object vehicle)
     {
@@ -89,40 +92,47 @@ public static class TollCalculator
 
     public static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
     {
+        decimal retValue = 0;
+        var isWeekDay = IsWeekDay(timeOfToll);
+        var timeBand = GetTimeBand(timeOfToll);
         if (IsWeekDay(timeOfToll))
         {
             if (GetTimeBand(timeOfToll) == TimeBand.MorningRush)
             {
                 if (inbound)
                 {
-                    return 2.00m;
+                    retValue = 2.00m;
                 }
                 else
                 {
-                    return 1.00m;
+                    retValue = 1.00m;
                 }
             }
             if (GetTimeBand(timeOfToll) == TimeBand.Daytime)
             {
-                return 1.50m;
+                retValue = 1.50m;
             }
             if (GetTimeBand(timeOfToll) == TimeBand.EveningRush)
             {
                 if (!inbound)
                 {
-                    return 2.00m;
+                    retValue = 2.00m;
                 }
                 else
                 {
-                    return 1.00m;
+                    retValue = 1.00m;
                 }
             }
             if (GetTimeBand(timeOfToll) == TimeBand.Overnight)
             {
-                return 0.75m;
+                retValue = 0.75m;
             }
         }
-        return 1.00m;
+        if (retValue == 0)
+        {
+            retValue = 1.00m;
+        }
+        return retValue;
     }
 
     private static bool IsWeekDay(DateTime timeOfToll)
@@ -145,7 +155,8 @@ public static class TollCalculator
                 return false;
             default:
                 return true;
-        };
+        }
+        ;
     }
 
     private enum TimeBand
