@@ -1,4 +1,3 @@
 ﻿namespace ConsumerVehicleRegistration;
 
-public record class Car(int Passengers)
-{ }
+public record class Car();
