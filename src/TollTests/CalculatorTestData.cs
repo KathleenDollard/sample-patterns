@@ -98,7 +98,7 @@ public class CalculatorTestData
                     Taxi = new Taxi(),
                     TimeOfPassing = DateTime.MinValue,
                     Direction = 0,
-                    Fares = 2
+                    Fares = 1
                 },
                new BusGantryReading
                 {
