@@ -15,11 +15,15 @@ Well, most of them pass, let's ship it
 
 Let's look at the ValueEquality test first.
 
-Records do not have deeep value equality, because getting it right in all cases without your undertanding didn't work out. You'll have to do this yourself, so I really like tests like these.
+Records do not have deep value equality, because getting it right in all cases without your undertanding didn't work out. You'll have to do this yourself, so I really like tests like these.
 
 OK, all of the calculations are failing, returning integer.MinValue. Let's step through this
 
 Well, that's a pretty simple error, but why didn't the compiler catch it?
+
+If you say something can be anything, it can be anything. Use generics and interfaces wherever you can to avoid object.
+
+But, you need object when the type you are working with can be anything, and the general concept of a vehicle can be anything and comes from other systems, so we can't use interfaces.
 
 ## Records 
 
