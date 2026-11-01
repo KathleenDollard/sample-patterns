@@ -6,14 +6,6 @@ First, I forgot to run the tests, so let's make sure we are starting with a know
 
 You can set the severity for most warnings and errors, and you can run with TreatWarningsAsErrors
 
-If I set this up right, we have a compiler warning or error. 
-
-Have the CarGantryReading constructor not have SetRequired properties, so there is an error
-
-Looking at the TollGantryReading...
-- This isolates the number of passengers, etc. from the registration info
-- But the object typing of vehicle is a problem
-- There are three solutions in the code, with a description
 
 ## Guardrails
 
@@ -22,6 +14,12 @@ Lets run the tests...
 Well, most of them pass, let's ship it
 
 Let's look at the ValueEquality test first.
+
+Records do not have deeep value equality, because getting it right in all cases without your undertanding didn't work out. You'll have to do this yourself, so I really like tests like these.
+
+OK, all of the calculations are failing, returning integer.MinValue. Let's step through this
+
+Well, that's a pretty simple error, but why didn't the compiler catch it?
 
 ## Records 
 

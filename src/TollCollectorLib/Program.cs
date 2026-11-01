@@ -5,7 +5,7 @@ var carReading = new CarGantryReading(new Car(),
                                       2);
 var taxiReading = new TaxiGantryReading
 {
-    Vehicle = new Taxi(),
+    Taxi = new Taxi(),
     Fares = 1,
     TimeOfPassing = DateTime.Now,
     Direction = TravelDirectionAtGantry.WestOrSouth
@@ -19,7 +19,7 @@ var busReading = new BusGantryReading
 };
 var deliveryTruckReading = new DeliveryTruckGantryReading
 {
-    Vehicle = new DeliveryTruck(1),
+    DeliveryTruck = new DeliveryTruck(1),
     GrossWeightClass = 1,
     TimeOfPassing = DateTime.Now,
     Direction = TravelDirectionAtGantry.WestOrSouth

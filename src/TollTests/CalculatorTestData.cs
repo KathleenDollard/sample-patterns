@@ -95,7 +95,7 @@ public class CalculatorTestData
                                      2),
                 new TaxiGantryReading
                 {
-                    Vehicle = new DeliveryTruck(1),
+                    Taxi = new Taxi(),
                     TimeOfPassing = DateTime.MinValue,
                     Direction = 0,
                     Fares = 2
@@ -109,7 +109,7 @@ public class CalculatorTestData
                 },
                 new DeliveryTruckGantryReading
                 {
-                    Vehicle = new DeliveryTruck(1),
+                    DeliveryTruck = new DeliveryTruck(1),
                     Direction = 0,
                     TimeOfPassing = DateTime.MinValue,
                     GrossWeightClass = 1

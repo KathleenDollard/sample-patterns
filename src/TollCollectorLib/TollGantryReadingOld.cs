@@ -1,26 +1,20 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TollCollectorLib;
+// Change the namespace to TollCollectorLib.Old and the one in TollGantryReading.cs
+// to TollCollectorLib to see the approach I chose
+
+namespace TollCollectorLib.Old;
 
 // The issue of different kinds of vehicles:
 // - CarGantryReading uses an instance constructor
 // - TaxiGantryReading pretends there is no issue
 // - BusGantryReading uses a property to set the vehicle
+//      (but results in warning on parameterless constructor)
 // - DeliveryTruckGantryReading uses a generic base class to set the vehicle
+//      (but results in warning on parameterless constructor)
 
-// All but the taxi approach are valid.
-// Build in guardrails where you can.
-
-// The car approach doesn't allow object initialization.
-// It requires the constructor be called.
-
-// The DeliveryTruck/generic base is very helpful when you want
-// to use or constrain the type, which is often.
-// ** See TollGantryReadingNew.cs **
-
-// Constructors can be used with the generic base
-
-// Pick an approach and prefer it for consistency.
+// None of these are particularly great - see TollGantryReading.cs for a better approach
+// This remains in place to show the original issue.
 
 public abstract record class TollGantryReading
 {
