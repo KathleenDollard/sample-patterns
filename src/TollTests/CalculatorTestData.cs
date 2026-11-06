@@ -23,38 +23,38 @@ public class CalculatorTestData
 {
     public CalculatorTestData()
     {
-        var (carReading, taxiReading, busReading, deliveryTruckReading) = GetEmptyReadings();
+        var readings = GetEmptyReadings();
 
-        (string description, DateTime time) tuesdayMorning = ("Tuesday morning", Find(DayOfWeek.Tuesday, 8, 15));
+        (string description, DateTime time) = ("Tuesday morning", Find(DayOfWeek.Tuesday, 8, 15));
 
-        Add(new CalculatorTestScenario(tuesdayMorning.description, 
-                                       carReading with
+        Add(new CalculatorTestScenario(description,
+                                       readings.CarReading with
                                        {
-                 TimeOfPassing = tuesdayMorning.time,
-                 Direction = TravelDirectionAtGantry.WestOrSouth
-             }, 
+                                           TimeOfPassing = time,
+                                           Direction = TravelDirectionAtGantry.WestOrSouth
+                                       },
              3));
 
-        Add(new CalculatorTestScenario(tuesdayMorning.description,
-             taxiReading with
-             {
-                 TimeOfPassing = tuesdayMorning.time,
-                 Direction = TravelDirectionAtGantry.WestOrSouth
-             },
+        Add(new CalculatorTestScenario(description,
+                                       readings.TaxiReading with
+                                       {
+                                           TimeOfPassing = time,
+                                           Direction = TravelDirectionAtGantry.WestOrSouth
+                                       },
              7));
 
-        Add(new CalculatorTestScenario(tuesdayMorning.description,
-             busReading with
+        Add(new CalculatorTestScenario(description,
+             readings.BusReading with
              {
-                 TimeOfPassing = tuesdayMorning.time,
+                 TimeOfPassing = time,
                  Direction = TravelDirectionAtGantry.WestOrSouth
              },
              14));
 
-        Add(new CalculatorTestScenario(tuesdayMorning.description,
-             deliveryTruckReading with
+        Add(new CalculatorTestScenario(description,
+             readings.TruckReading with
              {
-                 TimeOfPassing = tuesdayMorning.time,
+                 TimeOfPassing = time,
                  Direction = TravelDirectionAtGantry.WestOrSouth
              },
              16));
@@ -66,28 +66,13 @@ public class CalculatorTestData
             var nextDay = now.AddDays(daysUntilNext);
             return new DateTime(nextDay.Year, nextDay.Month, nextDay.Day, hour, minute, 0);
         }
-
-        //Add(new CarGantryReading(new Car(),
-        //                         DateTime.MinValue,
-        //                         0,
-        //                         2),
-        //                         (morningIn: 3, weekend: 0, overnight: 0, midday: 0));
-        //Add(new TaxiGantryReading
-        //{
-        //    Vehicle = new Taxi(),
-        //    TimeOfPassing = DateTime.MinValue,
-        //    Direction = 0,
-        //    Fares = 2
-        //}, (morningIn: 7, weekend: 0, overnight: 0, midday: 0));
-        //Add(new BusGantryReading
-        //{
-        //    Bus = new Bus(50),
-        //    Riders = 3
-        //}, (morningIn: 14, weekend: 0, overnight: 0, midday: 0));
-        //Add(new DeliveryTruckGantryReading(1), (morningIn: 16, weekend: 0, overnight: 0, midday: 0));
     }
 
-    private static (TollGantryReading, TollGantryReading, TollGantryReading, TollGantryReading) GetEmptyReadings()
+    private static (TollGantryReading CarReading,
+                    TollGantryReading TaxiReading,
+                    TollGantryReading BusReading,
+                    TollGantryReading TruckReading)
+               GetEmptyReadings()
     {
         return (new CarGantryReading(new Car(),
                                      DateTime.MinValue,
@@ -101,12 +86,12 @@ public class CalculatorTestData
                     Fares = 1
                 },
                new BusGantryReading
-                {
-                    Bus = new Bus(50),
-                    TimeOfPassing = DateTime.MinValue,
-                    Direction = 0,
-                    Riders = 3
-                },
+               {
+                   Bus = new Bus(50),
+                   TimeOfPassing = DateTime.MinValue,
+                   Direction = 0,
+                   Riders = 3
+               },
                 new DeliveryTruckGantryReading
                 {
                     DeliveryTruck = new DeliveryTruck(1),

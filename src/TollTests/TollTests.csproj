@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExternalSystems\ExternalSystems.csproj" />
+    <ProjectReference Include="..\ExternalSystems\RegistrationSystems.csproj" />
     <ProjectReference Include="..\TollCollectorLib\TollCollectorLib.csproj" />
   </ItemGroup>
 

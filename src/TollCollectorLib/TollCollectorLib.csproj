@@ -4,7 +4,7 @@
 		<OutputType>Exe</OutputType>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\ExternalSystems\ExternalSystems.csproj" />
+		<ProjectReference Include="..\ExternalSystems\RegistrationSystems.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,21 +1,28 @@
 # Demo script
 
-First, I forgot to run the tests, so let's make sure we are starting with a known good.
+## Let's look at this TollCalculator project
 
-## Warnings and errors
+Different assemblies for different things
 
-You can set the severity for most warnings and errors, and you can run with TreatWarningsAsErrors
+## Tests
 
+Oh, I forgot to run the tests, so let's make sure we are starting with a known good.
 
-## Guardrails
+Two tests fail. Let's do the value equality one first. 
 
-Lets run the tests...
+## Understanding type variation
 
-Well, most of them pass, let's ship it
+Tests in Modern C# project, TypeBehaviorTests
 
-Let's look at the ValueEquality test first.
+Records are particularly important for struct, to avoid reflection and allow AOT
 
-Records do not have deep value equality, because getting it right in all cases without your undertanding didn't work out. You'll have to do this yourself, so I really like tests like these.
+## Back to the equality test
+
+Uncomment the CompanyIds code, discussing that there is no deep equality
+
+These kinds of tests are valuable to leave in your system.
+
+## To the TollCalculator test failure
 
 OK, all of the calculations are failing, returning integer.MinValue. Let's step through this
 
@@ -25,22 +32,25 @@ If you say something can be anything, it can be anything. Use generics and inter
 
 But, you need object when the type you are working with can be anything, and the general concept of a vehicle can be anything and comes from other systems, so we can't use interfaces.
 
-## Records 
+## Unions
 
-I include  `class` so I do not have to remember that default
+Fix it with a Vehicle union in TollCalculatorLib. Fix the gantry reading.
 
-(One test fails)
+There is now a compiler error in TollCalculator. Three cheers for guardrails!
 
-Let's look at that test. OK, just a simple test for value equality, we better look at that class. (RideShare value equality)
+## Closed types
 
-Records are great for value equality, 
- - but they do not test for deep value equality. 
- - Specifically, no value equality for contained nested complex type by default
- - That includes lists, arrays, etc.
+Nothing technically the same, but there may be times you are choosing between unions and closed type hierarchies.
 
-Add an Equals and a GetHashCode, always both. I'll just uncomment this.
+Demo, with sealed
 
-Records are nice for value equality. Use them for all structs. 
+If you have a type hierarchy already, or know you want one, prefer closed type hierarchies
+
+If you don't control your types, use unions
+
+## Warnings and errors
+
+You can set the severity for most warnings and errors, and you can run with TreatWarningsAsErrors
 
 ## Patterns
 
@@ -58,6 +68,7 @@ Then use pattern matching.
 
 To keep things moving, I'm going to copy in the `switch` statement, then flip back and forth between them
 
-
+_Expressions over statements_
 
 ## Unions
+

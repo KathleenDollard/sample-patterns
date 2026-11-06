@@ -5,7 +5,7 @@ VisualStudioVersion = 18.7.11811.120
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TollCollectorLib", "TollCollectorLib\TollCollectorLib.csproj", "{E1875336-0D0B-48C9-AABC-4400D9285F3F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalSystems", "ExternalSystems\ExternalSystems.csproj", "{62FB2B53-27B3-4D3B-A893-FB0261EDF9BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrationSystems", "ExternalSystems\RegistrationSystems.csproj", "{62FB2B53-27B3-4D3B-A893-FB0261EDF9BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{292ABE69-93CE-49D4-B41F-7403AA0DC7DF}"
 	ProjectSection(SolutionItems) = preProject
