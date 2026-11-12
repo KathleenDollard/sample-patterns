@@ -1,12 +1,34 @@
 ﻿
-var car = new Car(2);
-var taxi = new Taxi(1);
-var bus = new Bus(50, 3);
-var deliveryTruck = new DeliveryTruck(1);
-Console.WriteLine($"Car toll: {TollCalculator.GetBillAmount(car, DateTime.Now, true)}");
-Console.WriteLine($"Taxi toll: {TollCalculator.GetBillAmount(taxi, DateTime.Now, true)}");
-Console.WriteLine($"Bus toll: {TollCalculator.GetBillAmount(bus, DateTime.Now, true)}");
-Demo(car); // This is just to have the Demo method highlighted correctly
+var carReading = new CarGantryReading(new Car(),
+                                      DateTime.Now,
+                                      TravelDirectionAtGantry.WestOrSouth,
+                                      2);
+var taxiReading = new TaxiGantryReading
+{
+    Taxi = new Taxi(),
+    Fares = 1,
+    TimeOfPassing = DateTime.Now,
+    Direction = TravelDirectionAtGantry.WestOrSouth
+};
+var busReading = new BusGantryReading
+{
+    Bus = new Bus(50),
+    Riders = 3,
+    TimeOfPassing = DateTime.Now,
+    Direction = TravelDirectionAtGantry.WestOrSouth
+};
+var deliveryTruckReading = new DeliveryTruckGantryReading
+{
+    DeliveryTruck = new DeliveryTruck(1),
+    GrossWeightClass = 1,
+    TimeOfPassing = DateTime.Now,
+    Direction = TravelDirectionAtGantry.WestOrSouth
+};
+Console.WriteLine($"Car toll: {TollCalculator.GetBillAmount(carReading)}");
+Console.WriteLine($"Taxi toll: {TollCalculator.GetBillAmount(taxiReading)}");
+Console.WriteLine($"Bus toll: {TollCalculator.GetBillAmount(busReading)}");
+Console.WriteLine($"Delivery Truck toll: {TollCalculator.GetBillAmount(deliveryTruckReading)}");
+Demo(carReading); // This is just to have the Demo method highlighted correctly
 
 void Demo(object vehicle)
 {
@@ -16,7 +38,7 @@ void Demo(object vehicle)
         // interesting stuff done here
     }
 
-    bool isBus;
+    bool isBus = false;
     var isCar = false;
     switch (vehicle)
     {
@@ -27,6 +49,6 @@ void Demo(object vehicle)
             isCar = true;
             break;
     }
-
+    Console.WriteLine($"Is bus: {isBus}, is car: {isCar}");
 }
 

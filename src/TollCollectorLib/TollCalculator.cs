@@ -7,16 +7,19 @@ public static class TollCalculator
     private const decimal busBase = 5.00m;
     private const decimal deliveryTruckBase = 10.00m;
 
-    public static decimal GetBillAmount(object vehicle, DateTime timeOfToll, bool inbound) 
-        => CalculateToll(vehicle) * PeakTimePremium(timeOfToll, inbound);
+    public static decimal GetBillAmount(TollGantryReading gantryReading)
+        => CalculateToll(gantryReading) *
+           PeakTimePremium(gantryReading.TimeOfPassing,
+                           gantryReading.Direction==TravelDirectionAtGantry.WestOrSouth);
 
-    public static decimal CalculateToll(object vehicle)
+    private static decimal CalculateToll(TollGantryReading gantryReading)
     {
-        if (vehicle == null)
+
+        if (gantryReading == null)
         {
-            throw new ArgumentNullException(nameof(vehicle));
+            throw new ArgumentNullException(nameof(gantryReading));
         }
-        if (vehicle is Car c)
+        if (gantryReading.Vehicle is CarGantryReading c)
         {
             if (c.Passengers == 0)
             {
@@ -33,7 +36,7 @@ public static class TollCalculator
             return carBase - 1.00m;
         }
 
-        if (vehicle is Taxi t)
+        if (gantryReading.Vehicle is TaxiGantryReading t)
         {
             if (t.Fares == 0)
             {
@@ -53,13 +56,13 @@ public static class TollCalculator
             }
         }
 
-        if (vehicle is Bus b)
+        if (gantryReading.Vehicle is BusGantryReading b)
         {
-            if (((double)b.Riders / b.Capacity) < 0.50)
+            if (((double)b.Riders / ((Bus)b.Vehicle).Capacity) < 0.50)
             {
                 return busBase + 2.00m;
             }
-            if (((double)b.Riders / b.Capacity) > 0.90)
+            if (((double)b.Riders / ((Bus)b.Vehicle).Capacity) > 0.90)
             {
                 return busBase - 1.00m;
             }
@@ -69,7 +72,7 @@ public static class TollCalculator
             }
         }
 
-        if (vehicle is DeliveryTruck tr)
+        if (gantryReading.Vehicle is DeliveryTruckGantryReading tr)
         {
             if (tr.GrossWeightClass > 5000)
             {
@@ -84,68 +87,87 @@ public static class TollCalculator
                 return deliveryTruckBase;
             }
         }
+
         return int.MinValue;
     }
 
-    public static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
+    private static decimal PeakTimePremium(DateTime timeOfToll, bool inbound)
     {
-        if (IsWeekDay(timeOfToll))
+        decimal retValue = 0;
+        var isWeekDay = IsWeekDay(timeOfToll);
+        var timeBand = GetTimeBand(timeOfToll);
+        if (isWeekDay)
         {
-            if (GetTimeBand(timeOfToll) == TimeBand.MorningRush)
+            if (timeBand == TimeBand.MorningRush)
             {
                 if (inbound)
                 {
-                    return 2.00m;
+                    retValue = 2.00m;
                 }
                 else
                 {
-                    return 1.00m;
+                    retValue = 1.00m;
                 }
             }
-            if (GetTimeBand(timeOfToll) == TimeBand.Daytime)
+            if (timeBand == TimeBand.Daytime)
             {
-                return 1.50m;
+                retValue = 1.50m;
             }
-            if (GetTimeBand(timeOfToll) == TimeBand.EveningRush)
+            if (timeBand == TimeBand.EveningRush)
             {
                 if (!inbound)
                 {
-                    return 2.00m;
+                    retValue = 2.00m;
                 }
                 else
                 {
-                    return 1.00m;
+                    retValue = 1.00m;
                 }
             }
-            if (GetTimeBand(timeOfToll) == TimeBand.Overnight)
+            if (timeBand == TimeBand.Overnight)
             {
-                return 0.75m;
+                retValue = 0.75m;
             }
         }
-        return 1.00m;
+        else
+        {
+            retValue = 1.00m;
+        }
+        return retValue;
     }
 
     private static bool IsWeekDay(DateTime timeOfToll)
     {
+        bool isWeekDay;
         switch (timeOfToll.DayOfWeek)
         {
             case DayOfWeek.Monday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Tuesday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Wednesday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Thursday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Friday:
-                return true;
+                isWeekDay = true;
+                break;
             case DayOfWeek.Saturday:
-                return false;
+                isWeekDay = false;
+                break;
             case DayOfWeek.Sunday:
-                return false;
+                isWeekDay = false;
+                break;
             default:
-                return true;
-        };
+                isWeekDay = true;
+                break;
+        }
+        ;
+        return isWeekDay;
     }
 
     private enum TimeBand
@@ -180,8 +202,17 @@ public static class TollCalculator
             return TimeBand.Overnight;
         }
     }
-}
 
+    #region  Secret stash
+    private readonly union DayType(DayType.WeekDay, DayType.Weekend)
+    {
+        internal record struct WeekDay;
+        internal record struct Weekend;
+    }
+
+    internal readonly union VehicleType(Car, Taxi, Bus, DeliveryTruck);
+    #endregion
+}
 
 // Final code to speed things up in talk 
 //public static decimal CalculateToll(object vehicle)

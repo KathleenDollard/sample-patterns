@@ -1,4 +1,4 @@
 ﻿namespace CommercialRegistration;
 
-public record DeliveryTruck(int GrossWeightClass)
+public record class DeliveryTruck(int GrossWeightClass)
 { }
