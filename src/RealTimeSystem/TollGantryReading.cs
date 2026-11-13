@@ -1,6 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Narnia.VehicleRegistrations.CommercialRegistration;
+using Narnia.VehicleRegistrations.ConsumerVehicleRegistration;
+using Narnia.VehicleRegistrations.LiveryRegistration;
+using System.Diagnostics.CodeAnalysis;
 
-namespace TollCollectorLib;
+namespace Narnia.RealTimeSystem;
 
 public abstract record class TollGantryReading
 {

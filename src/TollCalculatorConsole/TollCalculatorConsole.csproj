@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <!--other properties in Directory.Build.props-->
+    <RootNamespace>Narnia.Console</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExternalSystems\RegistrationSystems.csproj" />
+    <ProjectReference Include="..\RealTimeSystem\RealTimeSystem.csproj" />
+    <ProjectReference Include="..\TollCollectorLib\TollCollectorLib.csproj" />
+  </ItemGroup>
+
+</Project>

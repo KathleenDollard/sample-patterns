@@ -1,4 +1,4 @@
-﻿namespace LiveryRegistration
+﻿namespace Narnia.VehicleRegistrations.LiveryRegistration
 {
     public record class Taxi();
 

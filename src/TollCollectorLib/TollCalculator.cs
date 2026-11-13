@@ -1,4 +1,6 @@
-﻿namespace TollCollectorLib;
+﻿using Narnia.RealTimeSystem;
+
+namespace Narnia.Tolls;
 
 public static class TollCalculator
 {

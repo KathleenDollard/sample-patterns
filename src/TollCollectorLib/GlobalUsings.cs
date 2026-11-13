@@ -1,4 +1,3 @@
-﻿global using CommercialRegistration;
-global using ConsumerVehicleRegistration;
-global using LiveryRegistration;
-global using TollCollectorLib;
+﻿global using Narnia.VehicleRegistrations.CommercialRegistration;
+global using Narnia.VehicleRegistrations.ConsumerVehicleRegistration;
+global using Narnia.VehicleRegistrations.LiveryRegistration;

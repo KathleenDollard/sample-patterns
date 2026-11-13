@@ -1,7 +1,7 @@
-﻿using CommercialRegistration;
-using ConsumerVehicleRegistration;
-using LiveryRegistration;
-using TollCollectorLib;
+﻿using Narnia.VehicleRegistrations.CommercialRegistration;
+using Narnia.VehicleRegistrations.ConsumerVehicleRegistration;
+using Narnia.VehicleRegistrations.LiveryRegistration;
+using Narnia.RealTimeSystem;
 
 namespace TollTests;
 

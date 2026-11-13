@@ -1,10 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Exe</OutputType>
-	</PropertyGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\ExternalSystems\RegistrationSystems.csproj" />
-	</ItemGroup>
+  <PropertyGroup>
+    <!--other properties in Directory.Build.props-->
+    <RootNamespace>Narnia.Tolls</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExternalSystems\RegistrationSystems.csproj" />
+    <ProjectReference Include="..\RealTimeSystem\RealTimeSystem.csproj" />
+  </ItemGroup>
 
 </Project>
