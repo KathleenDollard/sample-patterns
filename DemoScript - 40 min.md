@@ -1,9 +1,5 @@
 # Demo script
 
-## Let's look at this TollCalculator project
-
-Different assemblies for different things
-
 ## Tests
 
 Oh, I forgot to run the tests, so let's make sure we are starting with a known good.
@@ -38,15 +34,7 @@ Fix it with a Vehicle union in TollCalculatorLib. Fix the gantry reading.
 
 There is now a compiler error in TollCalculator. Three cheers for guardrails!
 
-## Closed types
-
-Nothing technically the same, but there may be times you are choosing between unions and closed type hierarchies.
-
-Demo, with sealed
-
-If you have a type hierarchy already, or know you want one, prefer closed type hierarchies
-
-If you don't control your types, use unions
+I have a slide on unions and closed hierarchies
 
 ## Warnings and errors
 
@@ -68,7 +56,10 @@ Then use pattern matching.
 
 To keep things moving, I'm going to copy in the `switch` statement, then flip back and forth between them
 
-_Expressions over statements_
 
-## Unions
+## Let's look at isolation in the TollCalculator project
+
+Different assemblies for different things
+
+
 
