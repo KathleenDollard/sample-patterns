@@ -1,4 +1,10 @@
 ﻿
+using Narnia.RealTimeSystem;
+using Narnia.Tolls;
+using Narnia.VehicleRegistrations.CommercialRegistration;
+using Narnia.VehicleRegistrations.ConsumerVehicleRegistration;
+using Narnia.VehicleRegistrations.LiveryRegistration;
+
 var carReading = new CarGantryReading(new Car(),
                                       DateTime.Now,
                                       TravelDirectionAtGantry.WestOrSouth,

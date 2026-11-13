@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!--other properties in Directory.Build.props-->
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

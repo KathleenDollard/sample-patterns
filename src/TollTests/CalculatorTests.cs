@@ -1,4 +1,4 @@
-﻿using TollCollectorLib;
+﻿using Narnia.Tolls;
 
 namespace TollTests;
 

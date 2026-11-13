@@ -1,4 +1,4 @@
-﻿namespace TollCollectorLib;
+﻿namespace Narnia.RealTimeSystem;
 
 public enum TravelDirectionAtGantry
 {

@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--other properties in Directory.Build.props-->
+    <RootNamespace>Narnia.RealTimeSystem</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExternalSystems\RegistrationSystems.csproj" />
+  </ItemGroup>
+
+</Project>
